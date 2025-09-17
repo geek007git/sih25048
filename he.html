@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heredity and Evolution - Biology Lesson | LearnQuiz</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #7c3aed;
+        }
+
+        .logo i {
+            background: linear-gradient(45deg, #7c3aed, #8b5cf6);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #7c3aed;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #6d28d9;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20 50 Q 30 20, 40 50 Q 50 80, 60 50 Q 70 20, 80 50" stroke="rgba(124,58,237,0.2)" stroke-width="3" fill="none"/><circle cx="25" cy="25" r="4" fill="rgba(139,92,246,0.3)"/><circle cx="75" cy="75" r="3" fill="rgba(124,58,237,0.3)"/><path d="M10 70 C 30 60, 70 40, 90 30" stroke="rgba(139,92,246,0.2)" stroke-width="2" fill="none"/></svg>');
+            animation: float 25s infinite linear;
+            opacity: 0.4;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50px) translateY(-50px) rotate(0deg); }
+            100% { transform: translateX(-50px) translateY(-50px) rotate(360deg); }
+        }
+
+        .lesson-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed, #8b5cf6);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #7c3aed;
+        }
+
+        /* Video Section */
+        .video-container {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .play-button i {
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        /* DNA Visualizer */
+        .dna-visualizer {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background: #1f2937;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dna-helix {
+            position: relative;
+            width: 200px;
+            height: 300px;
+        }
+
+        .dna-strand {
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #7c3aed, #8b5cf6);
+            border-radius: 2px;
+            animation: rotate 6s infinite linear;
+        }
+
+        .dna-strand:nth-child(1) { left: 30%; }
+        .dna-strand:nth-child(2) { right: 30%; animation-delay: -3s; }
+
+        @keyframes rotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .base-pair {
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #ef4444, #f97316, #eab308, #22c55e);
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Evolution Timeline */
+        .evolution-timeline {
+            background: #1f2937;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+            overflow-x: auto;
+        }
+
+        .timeline-container {
+            display: flex;
+            gap: 2rem;
+            min-width: 800px;
+            align-items: center;
+        }
+
+        .timeline-item {
+            background: #374151;
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-width: 150px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .timeline-item:hover {
+            background: #4b5563;
+            transform: translateY(-5px);
+        }
+
+        .timeline-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #8b5cf6;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #e5e7eb;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: #d1d5db;
+        }
+
+        /* Concept Cards */
+        .concept-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .concept-card.heredity {
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+            border: 1px solid #7c3aed;
+        }
+
+        .concept-card.evolution {
+            background: linear-gradient(135deg, #ecfccb, #d9f99d);
+            border: 1px solid #65a30d;
+        }
+
+        .concept-card h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .concept-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .heredity-icon { background: #7c3aed; }
+        .evolution-icon { background: #65a30d; }
+
+        /* Punnett Square */
+        .punnett-square {
+            background: #1f2937;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .square-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            max-width: 300px;
+            margin: 2rem auto;
+            background: #374151;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .square-cell {
+            background: #4b5563;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .square-cell.header {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .square-cell.result {
+            background: #374151;
+            color: #22c55e;
+        }
+
+        /* Natural Selection Demo */
+        .selection-demo {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .moth-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .moth {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0.5rem;
+        }
+
+        .moth.light {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .moth.dark {
+            background: #1f2937;
+            color: #f3f4f6;
+        }
+
+        .moth:hover {
+            transform: scale(1.1);
+        }
+
+        .moth.selected {
+            box-shadow: 0 0 0 3px #7c3aed;
+        }
+
+        /* Real-world Applications */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .example-item {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .example-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .example-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #059669;
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: #065f46;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-desc {
+            color: #047857;
+            font-size: 0.9rem;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-option:hover {
+            background: #f3f4f6;
+            border-color: #7c3aed;
+        }
+
+        .quiz-option.selected {
+            background: #f3e8ff;
+            border-color: #7c3aed;
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #15803d;
+        }
+
+        .quiz-option.incorrect {
+            background: #fef2f2;
+            border-color: #dc2626;
+            color: #dc2626;
+        }
+
+        .submit-quiz, .next-lesson {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-quiz:hover, .next-lesson:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .quiz-result {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-heredity { background: #7c3aed; }
+        .btn-evolution { background: #65a30d; }
+        .btn-selection { background: #dc2626; }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .lesson-header h1 {
+                font-size: 2rem;
+            }
+
+            .lesson-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .concept-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .examples-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .timeline-container {
+                min-width: 600px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-dna"></i>
+                    Mind forge
+                </div>
+                <div class="breadcrumb">
+                    <a href="#" onclick="history.back()">Dashboard</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="#" onclick="history.back()">Biology</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Heredity & Evolution</span>
+                </div>
+                <a href="#" onclick="history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Courses
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="heredity-evolution-lesson">
+        <div class="container">
+            
+            <!-- Lesson Header -->
+            <div class="lesson-header fade-in">
+                <h1>Heredity and Evolution</h1>
+                <p>Discover how traits are passed down through generations and how species change over time</p>
+                <div class="lesson-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>65 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Intermediate</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-dna"></i>
+                        <span>Biology</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker fade-in">
+                <h3><i class="fas fa-chart-line"></i> Lesson Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                <p id="progressText">Ready to explore the mechanisms of inheritance and evolution!</p>
+            </div>
+
+            <!-- Lesson Content -->
+         <div class="lesson-content slide-in-left">
+
+  <!-- Introduction Video -->
+  <div class="content-section">
+    <h2 class="section-title">
+      <i class="fas fa-play-circle"></i>
+      Introduction Video
+    </h2>
+    <div class="video-container">
+      <a href="https://youtu.be/as157ZmxHzM?si=izzWJX_ljLby2DJj" target="_blank">
+        <div class="video-placeholder">
+          <div class="play-button">
+            <i class="fas fa-play"></i>
+          </div>
+          <h3>The Story of Life's Continuity</h3>
+          <p>Click to explore how life perpetuates and changes through time</p>
+        </div>
+      </a>
+    </div>
+    <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
+      This video introduces the fascinating connections between heredity and evolution in shaping life on Earth.
+    </p>
+  </div>
+
+</div>
+
+
+                <!-- What is Heredity? -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question-circle"></i>
+                        What is Heredity?
+                    </h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        <strong>Heredity</strong> is the passing of traits from parents to offspring through genetic information. 
+                        DNA carries the instructions for all inherited characteristics, from eye color to disease susceptibility. 
+                        This genetic inheritance is the foundation for evolution and the diversity of life.
+                    </p>
+                    
+                    <div class="interactive-demo">
+                        <h3 style="margin-bottom: 1rem;">DNA Structure Visualization</h3>
+                        <div class="dna-visualizer">
+                            <div class="dna-helix">
+                                <div class="dna-strand"></div>
+                                <div class="dna-strand"></div>
+                                <div class="base-pair" style="top: 10%;"></div>
+                                <div class="base-pair" style="top: 25%;"></div>
+                                <div class="base-pair" style="top: 40%;"></div>
+                                <div class="base-pair" style="top: 55%;"></div>
+                                <div class="base-pair" style="top: 70%;"></div>
+                                <div class="base-pair" style="top: 85%;"></div>
+                            </div>
+                        </div>
+                        <p style="color: #6b7280; margin-top: 1rem;">
+                            DNA's double helix structure contains the genetic code that determines inherited traits.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Core Concepts -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-sitemap"></i>
+                        Core Concepts
+                    </h2>
+                    <div class="concept-cards">
+                        <div class="concept-card heredity">
+                            <h3>
+                                <div class="concept-icon heredity-icon">H</div>
+                                Heredity & Genetics
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                The study of how traits are passed from parents to offspring through genes. Includes dominant 
+                                and recessive alleles, chromosomes, and inheritance patterns discovered by Gregor Mendel.
+                            </p>
+                            <div style="background: rgba(124, 58, 237, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #6d28d9;">Key Topics:</strong> DNA, genes, alleles, chromosomes, Mendelian inheritance
+                            </div>
+                        </div>
+                        <div class="concept-card evolution">
+                            <h3>
+                                <div class="concept-icon evolution-icon">E</div>
+                                Evolution & Natural Selection
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                The process by which species change over time through natural selection, genetic drift, and other mechanisms. 
+                                Explains the diversity of life and common ancestry of all organisms.
+                            </p>
+                            <div style="background: rgba(101, 163, 13, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #65a30d;">Key Topics:</strong> Natural selection, adaptation, speciation, fossil evidence
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mendelian Inheritance -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-calculator"></i>
+                        Mendelian Inheritance
+                    </h2>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        <strong>Gregor Mendel</strong> discovered the basic principles of inheritance through his pea plant experiments. 
+                        His laws explain how traits are passed from generation to generation through dominant and recessive alleles.
+                    </p>
+
+                    <div class="punnett-square">
+                        <h3 style="margin-bottom: 1rem; color: #e5e7eb;">Punnett Square: Eye Color Inheritance</h3>
+                        <p style="color: #d1d5db; margin-bottom: 1rem;">
+                            Example: Brown eyes (B) are dominant, blue eyes (b) are recessive
+                        </p>
+                        <div class="square-grid" id="punnettGrid">
+                            <div class="square-cell header"></div>
+                            <div class="square-cell header">B</div>
+                            <div class="square-cell header">b</div>
+                            <div class="square-cell header">B</div>
+                            <div class="square-cell result">BB</div>
+                            <div class="square-cell result">Bb</div>
+                            <div class="square-cell header">b</div>
+                            <div class="square-cell result">Bb</div>
+                            <div class="square-cell result">bb</div>
+                        </div>
+                        <div class="controls">
+                            <button class="btn btn-heredity" onclick="changePunnett('eyeColor')">Eye Color</button>
+                            <button class="btn btn-heredity" onclick="changePunnett('height')">Plant Height</button>
+                            <button class="btn btn-heredity" onclick="changePunnett('bloodType')">Blood Type</button>
+                        </div>
+                        <p style="color: #d1d5db; margin-top: 1rem;">
+                            Result: 25% BB (brown), 50% Bb (brown), 25% bb (blue)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Evolution Timeline -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-clock"></i>
+                        Evolution Through Time
+                    </h2>
+                    <div class="evolution-timeline">
+                        <h3 style="margin-bottom: 1rem; color: #e5e7eb;">Major Evolutionary Milestones</h3>
+                        <div class="timeline-container">
+                            <div class="timeline-item" onclick="showTimelineInfo('origin')">
+                                <div class="timeline-icon">🌊</div>
+                                <div class="timeline-title">Origin of Life</div>
+                                <div class="timeline-desc">~3.8 billion years ago</div>
+                            </div>
+                            <div class="timeline-item" onclick="showTimelineInfo('photosynthesis')">
+                                <div class="timeline-icon">🌿</div>
+                                <div class="timeline-title">Photosynthesis</div>
+                                <div class="timeline-desc">~3.5 billion years ago</div>
+                            </div>
+                            <div class="timeline-item" onclick="showTimelineInfo('multicellular')">
+                                <div class="timeline-icon">🔬</div>
+                                <div class="timeline-title">Multicellular Life</div>
+                                <div class="timeline-desc">~1.5 billion years ago</div>
+                            </div>
+                            <div class="timeline-item" onclick="showTimelineInfo('cambrian')">
+                                <div class="timeline-icon">🦐</div>
+                                <div class="timeline-title">Cambrian Explosion</div>
+                                <div class="timeline-desc">~540 million years ago</div>
+                            </div>
+                            <div class="timeline-item" onclick="showTimelineInfo('land')">
+                                <div class="timeline-icon">🐸</div>
+                                <div class="timeline-title">Life on Land</div>
+                                <div class="timeline-desc">~450 million years ago</div>
+                            </div>
+                            <div class="timeline-item" onclick="showTimelineInfo('mammals')">
+                                <div class="timeline-icon">🦕</div>
+                                <div class="timeline-title">Age of Mammals</div>
+                                <div class="timeline-desc">~65 million years ago</div>
+                            </div>
+                        </div>
+                        <div id="timelineInfo" style="background: #374151; border-radius: 10px; padding: 1rem; margin-top: 2rem; display: none;">
+                            <p id="timelineText" style="color: #e5e7eb;"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Natural Selection -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-balance-scale"></i>
+                        Natural Selection in Action
+                    </h2>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        <strong>Natural selection</strong> is the process by which organisms with favorable traits survive and reproduce 
+                        more successfully than those without these traits. This leads to evolutionary change over time.
+                    </p>
+
+                    <div class="selection-demo">
+                        <h3 style="margin-bottom: 1rem; color: #92400e;">Peppered Moth Simulation</h3>
+                        <p style="color: #78350f; margin-bottom: 1rem;">
+                            During the Industrial Revolution, dark moths became more common as pollution darkened tree bark. 
+                            Click moths to see which survive better on different backgrounds!
+                        </p>
+                        <div class="moth-container" id="mothContainer">
+                            <div class="moth light" onclick="selectMoth(this)">🦋</div>
+                            <div class="moth light" onclick="selectMoth(this)">🦋</div>
+                            <div class="moth dark" onclick="selectMoth(this)">🦋</div>
+                            <div class="moth light" onclick="selectMoth(this)">🦋</div>
+                            <div class="moth dark" onclick="selectMoth(this)">🦋</div>
+                            <div class="moth light" onclick="selectMoth(this)">🦋</div>
+                            <div class="moth dark" onclick="selectMoth(this)">🦋</div>
+                            <div class="moth light" onclick="selectMoth(this)">🦋</div>
+                        </div>
+                        <div class="controls">
+                            <button class="btn btn-selection" onclick="setEnvironment('clean')">Clean Forest</button>
+                            <button class="btn btn-selection" onclick="setEnvironment('polluted')">Polluted Forest</button>
+                            <button class="btn btn-evolution" onclick="resetMoths()">Reset Moths</button>
+                        </div>
+                        <p id="selectionResult" style="color: #65a30d; font-weight: bold; margin-top: 1rem;"></p>
+                    </div>
+                </div>
+
+                <!-- Real-World Applications -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-globe-americas"></i>
+                        Real-World Applications
+                    </h2>
+                    <div class="examples-grid">
+                        <div class="example-item">
+                            <div class="example-icon">💊</div>
+                            <div class="example-title">Medicine & Genetics</div>
+                            <div class="example-desc">Understanding heredity helps treat genetic diseases and develop personalized medicine.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🌾</div>
+                            <div class="example-title">Crop Improvement</div>
+                            <div class="example-desc">Selective breeding and genetic engineering create better crops with higher yields.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🦠</div>
+                            <div class="example-title">Antibiotic Resistance</div>
+                            <div class="example-desc">Evolution explains how bacteria develop resistance to antibiotics over time.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🐕</div>
+                            <div class="example-title">Animal Breeding</div>
+                            <div class="example-desc">Understanding genetics helps breed healthier pets and livestock with desired traits.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🧬</div>
+                            <div class="example-title">Forensic Science</div>
+                            <div class="example-desc">DNA analysis helps solve crimes and establish paternity through genetic evidence.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🌍</div>
+                            <div class="example-title">Conservation Biology</div>
+                            <div class="example-desc">Evolution principles guide efforts to preserve endangered species and biodiversity.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Quiz -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question"></i>
+                        Knowledge Check
+                    </h2>
+                    <div class="quiz-section">
+                        <div class="quiz-question">
+                            <div class="question-title">1. What did Gregor Mendel discover through his pea plant experiments?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> The structure of DNA
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> The basic laws of inheritance
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Natural selection
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Genetic mutations
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">2. Which process drives evolutionary change over time?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Genetic dominance
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Natural selection
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> DNA replication
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Photosynthesis
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">3. In a Punnett square for brown eyes (B) vs blue eyes (b), what percentage of Bb x Bb offspring will have brown eyes?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> 25%
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> 50%
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>C)</span> 75%
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> 100%
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">4. What molecule carries genetic information from parents to offspring?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>A)</span> DNA
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> Protein
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Carbohydrate
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Lipid
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">5. The peppered moth example demonstrates which evolutionary principle?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Genetic drift
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Natural selection in response to environmental change
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Artificial selection
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Genetic mutation
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="submit-quiz" onclick="submitQuiz()">Submit Quiz</button>
+                        
+                        <div class="quiz-result" id="quizResult">
+                            <h3 id="resultTitle"></h3>
+                            <p id="resultMessage"></p>
+                            <div id="resultScore"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-check-circle"></i>
+                        Lesson Summary
+                    </h2>
+                    <div style="background: #fef7cd; border-left: 4px solid #f59e0b; padding: 2rem; border-radius: 10px;">
+                        <h3 style="color: #92400e; margin-bottom: 1rem;">What you've learned:</h3>
+                        <ul style="color: #78350f; line-height: 1.8; padding-left: 1.5rem;">
+                            <li>Heredity is the passing of traits from parents to offspring through DNA</li>
+                            <li>Mendel discovered the basic laws of inheritance using pea plants</li>
+                            <li>Dominant and recessive alleles determine which traits are expressed</li>
+                            <li>Evolution occurs through natural selection and other mechanisms</li>
+                            <li>Natural selection favors traits that improve survival and reproduction</li>
+                            <li>Evidence for evolution comes from fossils, DNA, and observed changes</li>
+                            <li>Understanding heredity and evolution has important applications in medicine, agriculture, and conservation</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="next-lesson" onclick="completeLesson()">
+                            <i class="fas fa-trophy"></i>
+                            Complete Lesson
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentProgress = 0;
+        let quizCompleted = false;
+        let videoWatched = false;
+        let selectedAnswers = {};
+        let quizSubmitted = false;
+        let currentEnvironment = 'clean';
+        let selectedMoths = 0;
+
+        // Progress tracking
+        function updateProgress(increment = 7) {
+            currentProgress = Math.min(currentProgress + increment, 100);
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            progressBar.style.width = currentProgress + '%';
+            
+            if (currentProgress <= 15) {
+                progressText.textContent = 'Beginning your journey through genetics and evolution';
+            } else if (currentProgress <= 35) {
+                progressText.textContent = 'Understanding heredity and DNA structure';
+            } else if (currentProgress <= 55) {
+                progressText.textContent = 'Exploring Mendelian inheritance patterns';
+            } else if (currentProgress <= 75) {
+                progressText.textContent = 'Learning about natural selection and evolution';
+            } else if (currentProgress < 100) {
+                progressText.textContent = 'Nearly mastered heredity and evolution!';
+            } else {
+                progressText.textContent = 'Heredity and evolution mastery achieved! 🧬';
+                progressText.style.color = '#10b981';
+                progressText.style.fontWeight = 'bold';
+            }
+        }
+
+        // Video interaction
+        function playVideo() {
+            const videoPlaceholder = document.querySelector('.video-placeholder');
+            videoPlaceholder.innerHTML = `
+                <div style="color: white; text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🧬</div>
+                    <h3>Video Playing...</h3>
+                    <p>Exploring the fascinating world of genetics and evolution</p>
+                    <div style="margin-top: 2rem;">
+                        <button onclick="videoCompleted()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
+                            Mark as Watched
+                        </button>
+                    </div>
+                </div>
+            `;
+            updateProgress(12);
+        }
+
+        function videoCompleted() {
+            if (!videoWatched) {
+                videoWatched = true;
+                updateProgress(8);
+                showNotification('Video completed! Ready to explore genetics and evolution! 🧬', 'success');
+            }
+        }
+
+        // Punnett Square
+        function changePunnett(type) {
+            const grid = document.getElementById('punnettGrid');
+            
+            if (type === 'eyeColor') {
+                grid.innerHTML = `
+                    <div class="square-cell header"></div>
+                    <div class="square-cell header">B</div>
+                    <div class="square-cell header">b</div>
+                    <div class="square-cell header">B</div>
+                    <div class="square-cell result">BB</div>
+                    <div class="square-cell result">Bb</div>
+                    <div class="square-cell header">b</div>
+                    <div class="square-cell result">Bb</div>
+                    <div class="square-cell result">bb</div>
+                `;
+            } else if (type === 'height') {
+                grid.innerHTML = `
+                    <div class="square-cell header"></div>
+                    <div class="square-cell header">T</div>
+                    <div class="square-cell header">t</div>
+                    <div class="square-cell header">T</div>
+                    <div class="square-cell result">TT</div>
+                    <div class="square-cell result">Tt</div>
+                    <div class="square-cell header">t</div>
+                    <div class="square-cell result">Tt</div>
+                    <div class="square-cell result">tt</div>
+                `;
+            } else if (type === 'bloodType') {
+                grid.innerHTML = `
+                    <div class="square-cell header"></div>
+                    <div class="square-cell header">A</div>
+                    <div class="square-cell header">O</div>
+                    <div class="square-cell header">A</div>
+                    <div class="square-cell result">AA</div>
+                    <div class="square-cell result">AO</div>
+                    <div class="square-cell header">B</div>
+                    <div class="square-cell result">AB</div>
+                    <div class="square-cell result">BO</div>
+                `;
+            }
+            updateProgress(5);
+        }
+
+        // Timeline
+        function showTimelineInfo(period) {
+            const infoDiv = document.getElementById('timelineInfo');
+            const textP = document.getElementById('timelineText');
+            
+            const info = {
+                origin: 'The first simple life forms appeared in Earth\'s oceans, likely as self-replicating molecules that eventually became the first cells.',
+                photosynthesis: 'Cyanobacteria evolved photosynthesis, releasing oxygen into the atmosphere and changing Earth\'s chemistry forever.',
+                multicellular: 'Simple multicellular organisms evolved, leading to more complex life forms with specialized cells and tissues.',
+                cambrian: 'A rapid diversification of animal life occurred, with most major animal phyla appearing in the fossil record.',
+                land: 'Plants and animals began colonizing land, leading to new evolutionary adaptations for terrestrial life.',
+                mammals: 'After the extinction of dinosaurs, mammals diversified rapidly to fill many ecological niches.'
+            };
+            
+            textP.textContent = info[period];
+            infoDiv.style.display = 'block';
+            updateProgress(4);
+        }
+
+        // Natural Selection Demo
+        function selectMoth(moth) {
+            document.querySelectorAll('.moth').forEach(m => m.classList.remove('selected'));
+            moth.classList.add('selected');
+            selectedMoths++;
+            updateProgress(3);
+        }
+
+        function setEnvironment(env) {
+            currentEnvironment = env;
+            const container = document.getElementById('mothContainer');
+            const result = document.getElementById('selectionResult');
+            
+            if (env === 'clean') {
+                container.style.background = 'linear-gradient(135deg, #f3f4f6, #e5e7eb)';
+                result.textContent = 'Clean environment: Light moths blend in better and survive more often!';
+            } else {
+                container.style.background = 'linear-gradient(135deg, #374151, #1f2937)';
+                result.textContent = 'Polluted environment: Dark moths are harder to spot and survive better!';
+            }
+            updateProgress(6);
+        }
+
+        function resetMoths() {
+            document.querySelectorAll('.moth').forEach(m => m.classList.remove('selected'));
+            selectedMoths = 0;
+            document.getElementById('selectionResult').textContent = '';
+            document.getElementById('mothContainer').style.background = '';
+        }
+
+        // Quiz functionality
+        function selectOption(optionElement, isCorrect) {
+            if (quizSubmitted) return;
+
+            const questionElement = optionElement.closest('.quiz-question');
+            const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(questionElement);
+            
+            // Remove previous selections in this question
+            questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            optionElement.classList.add('selected');
+            selectedAnswers[questionIndex] = { element: optionElement, correct: isCorrect };
+            
+            updateProgress(3);
+        }
+
+        function submitQuiz() {
+            if (quizSubmitted) return;
+
+            const totalQuestions = document.querySelectorAll('.quiz-question').length;
+            const answeredQuestions = Object.keys(selectedAnswers).length;
+            
+            if (answeredQuestions < totalQuestions) {
+                showNotification('Please answer all questions before submitting!', 'warning');
+                return;
+            }
+
+            quizSubmitted = true;
+            let correctCount = 0;
+
+            // Show correct/incorrect answers
+            Object.keys(selectedAnswers).forEach(questionIndex => {
+                const answer = selectedAnswers[questionIndex];
+                const questionElement = document.querySelectorAll('.quiz-question')[questionIndex];
+                
+                questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    // Show correct answers
+                    if (opt.onclick && opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+
+                if (answer.correct) {
+                    correctCount++;
+                    answer.element.classList.add('correct');
+                } else {
+                    answer.element.classList.add('incorrect');
+                }
+            });
+
+            // Show results
+            const resultDiv = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            const resultScore = document.getElementById('resultScore');
+
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            
+            resultTitle.textContent = `Quiz Complete!`;
+            resultScore.innerHTML = `<div style="font-size: 2rem; font-weight: bold; color: ${percentage >= 70 ? '#10b981' : '#ef4444'}; margin: 1rem 0;">${correctCount}/${totalQuestions} (${percentage}%)</div>`;
+            
+            if (percentage >= 90) {
+                resultMessage.textContent = 'Outstanding! You have mastered heredity and evolution concepts! ⭐';
+                resultTitle.style.color = '#10b981';
+            } else if (percentage >= 70) {
+                resultMessage.textContent = 'Great work! You understand genetics and evolutionary principles well. 👍';
+                resultTitle.style.color = '#059669';
+            } else {
+                resultMessage.textContent = 'Keep studying! Review inheritance patterns and natural selection. 📚';
+                resultTitle.style.color = '#dc2626';
+            }
+
+            resultDiv.classList.add('show');
+            updateProgress(15);
+            quizCompleted = true;
+        }
+
+        function completeLesson() {
+            if (!quizCompleted) {
+                showNotification('Please complete the quiz before finishing the lesson!', 'warning');
+                return;
+            }
+
+            updateProgress(10);
+            showNotification('🎉 Excellent! You have completed Heredity and Evolution!', 'success');
+            
+            // Simulate saving progress
+            setTimeout(() => {
+                alert('Lesson progress saved! You\'re ready for advanced biology topics like molecular genetics and evolutionary biology.');
+            }, 1000);
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#ef4444'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+
+        // Add CSS for notification animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Intersection Observer for scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.style.animationFillMode = 'both';
+                    updateProgress(2);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize
+        updateProgress(5);
+        
+        // Handle direct link access
+        if (window.location.hash === '#heredity-evolution-lesson' || window.location.pathname.includes('heredity')) {
+            updateProgress(5);
+            showNotification('Welcome to Heredity and Evolution! Ready to explore the mechanisms of life? 🧬', 'success');
+        }
+    </script>
+</body>
+</html>
