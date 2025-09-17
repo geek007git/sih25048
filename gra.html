@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravitation - Science Lesson | LearnQuiz</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6366f1;
+        }
+
+        .logo i {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #4f46e5;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #1e3a8a, #581c87);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="50" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50px) translateY(-50px) rotate(0deg); }
+            100% { transform: translateX(-50px) translateY(-50px) rotate(360deg); }
+        }
+
+        .lesson-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #6366f1;
+        }
+
+        /* Video Section */
+        .video-container {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3a8a, #581c87);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .play-button i {
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .gravity-simulator {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: radial-gradient(circle, #1e3a8a 0%, #000 70%);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            animation: orbit 10s linear infinite;
+        }
+
+        .sun {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #fbbf24, #f59e0b);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .earth {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #3b82f6, #1e40af);
+            top: 50%;
+            left: 80%;
+            transform-origin: -150px center;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .formula {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+
+        .formula-explanation {
+            color: #78350f;
+            line-height: 1.6;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-option:hover {
+            background: #f3f4f6;
+            border-color: #6366f1;
+        }
+
+        .quiz-option.selected {
+            background: #ddd6fe;
+            border-color: #6366f1;
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #15803d;
+        }
+
+        .quiz-option.incorrect {
+            background: #fef2f2;
+            border-color: #dc2626;
+            color: #dc2626;
+        }
+
+        .submit-quiz {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-quiz:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .quiz-result {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        /* Key Concepts */
+        .concept-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #0ea5e9;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.2);
+        }
+
+        .concept-card h3 {
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .concept-card p {
+            color: #075985;
+            line-height: 1.6;
+        }
+
+        /* Real-world Examples */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .example-item {
+            background: linear-gradient(135deg, #fef7cd, #fef3c7);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .example-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .example-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #d97706;
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-desc {
+            color: #78350f;
+            font-size: 0.9rem;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        .next-lesson {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .next-lesson:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .lesson-header h1 {
+                font-size: 2rem;
+            }
+
+            .lesson-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .concept-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .examples-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    LearnQuiz
+                </div>
+                <div class="breadcrumb">
+                    <a href="#" onclick="history.back()">Dashboard</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="#" onclick="history.back()">Science</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Gravitation</span>
+                </div>
+                <a href="#" onclick="history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Courses
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="gravitation-lesson">
+        <div class="container">
+            
+            <!-- Lesson Header -->
+            <div class="lesson-header fade-in">
+                <h1>Universal Gravitation</h1>
+                <p>Discover the fundamental force that governs the motion of planets, stars, and galaxies</p>
+                <div class="lesson-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>45 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Intermediate</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-atom"></i>
+                        <span>Physics</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker fade-in">
+                <h3><i class="fas fa-chart-line"></i> Lesson Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                <p id="progressText">Ready to start learning about gravitation!</p>
+            </div>
+
+            <!-- Lesson Content -->
+            <div class="lesson-content slide-in-left">
+                
+                <!-- Introduction -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-play-circle"></i>
+                        Introduction Video
+                    </h2>
+                    <div class="video-container">
+                        <div class="video-placeholder" onclick="playVideo()">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <h3>What is Gravity?</h3>
+                            <p>Click to start the lesson video</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
+                        This introductory video explains the basic concept of gravity and its importance in our universe.
+                    </p>
+                </div>
+
+                <!-- What is Gravitation? -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question-circle"></i>
+                        What is Gravitation?
+                    </h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        <strong>Gravitation</strong> is the fundamental force of attraction that exists between any two objects with mass. 
+                        It's the force that keeps our feet on the ground, holds the Moon in orbit around Earth, and binds galaxies together 
+                        across the vast expanse of the universe.
+                    </p>
+                    
+                    <div class="interactive-demo">
+                        <h3 style="margin-bottom: 1rem;">Interactive Solar System</h3>
+                        <div class="gravity-simulator">
+                            <div class="planet sun"></div>
+                            <div class="planet earth"></div>
+                        </div>
+                        <p style="color: #6b7280; margin-top: 1rem;">
+                            Watch how Earth orbits the Sun due to gravitational attraction
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Newton's Law -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-balance-scale"></i>
+                        Newton's Law of Universal Gravitation
+                    </h2>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        Sir Isaac Newton formulated the law of universal gravitation in 1687. This law states that every particle 
+                        of matter in the universe attracts every other particle with a force directly proportional to the product 
+                        of their masses and inversely proportional to the square of the distance between their centers.
+                    </p>
+
+                    <div class="formula-box">
+                        <div class="formula">F = G × (m₁ × m₂) / r²</div>
+                        <div class="formula-explanation">
+                            <strong>Where:</strong><br>
+                            F = Gravitational force between two objects<br>
+                            G = Gravitational constant (6.674 × 10⁻¹¹ N⋅m²/kg²)<br>
+                            m₁, m₂ = Masses of the two objects<br>
+                            r = Distance between the centers of the two objects
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Concepts -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Key Concepts
+                    </h2>
+                    <div class="concept-cards">
+                        <div class="concept-card">
+                            <h3><i class="fas fa-weight-hanging"></i> Mass vs Weight</h3>
+                            <p>Mass is the amount of matter in an object and remains constant everywhere. Weight is the force of gravity acting on that mass and varies with gravitational field strength.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h3><i class="fas fa-arrows-alt-h"></i> Inverse Square Law</h3>
+                            <p>Gravitational force decreases with the square of distance. If you double the distance, the force becomes one-fourth as strong.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h3><i class="fas fa-globe"></i> Gravitational Field</h3>
+                            <p>The space around a massive object where its gravitational influence can be felt. Earth's gravitational field strength is approximately 9.8 N/kg.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Examples -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-globe-americas"></i>
+                        Real-World Examples
+                    </h2>
+                    <div class="examples-grid">
+                        <div class="example-item">
+                            <div class="example-icon">🌙</div>
+                            <div class="example-title">Moon's Orbit</div>
+                            <div class="example-desc">The Moon orbits Earth due to gravitational attraction, creating tides in our oceans.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🍎</div>
+                            <div class="example-title">Falling Objects</div>
+                            <div class="example-desc">All objects fall at the same rate in a vacuum due to Earth's gravitational pull.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🚀</div>
+                            <div class="example-title">Space Travel</div>
+                            <div class="example-desc">Rockets must overcome Earth's gravity to reach space and use gravity assists for efficient travel.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">⭐</div>
+                            <div class="example-title">Star Formation</div>
+                            <div class="example-desc">Gravity pulls gas and dust together to form stars and planetary systems.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Quiz -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question"></i>
+                        Knowledge Check
+                    </h2>
+                    <div class="quiz-section">
+                        <div class="quiz-question">
+                            <div class="question-title">1. What happens to gravitational force when the distance between two objects is doubled?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> It doubles
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> It halves
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>C)</span> It becomes one-fourth
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> It remains the same
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">2. Which scientist formulated the law of universal gravitation?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Albert Einstein
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Isaac Newton
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Galileo Galilei
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Johannes Kepler
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">3. What is the approximate value of Earth's gravitational field strength?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> 9.8 m/s
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> 9.8 N/kg
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> 9.8 kg/N
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> 9.8 m²/s
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="submit-quiz" onclick="submitQuiz()">Submit Quiz</button>
+                        
+                        <div class="quiz-result" id="quizResult">
+                            <h3 id="resultTitle"></h3>
+                            <p id="resultMessage"></p>
+                            <div id="resultScore"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-check-circle"></i>
+                        Lesson Summary
+                    </h2>
+                    <div style="background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 2rem; border-radius: 10px;">
+                        <h3 style="color: #0c4a6e; margin-bottom: 1rem;">What you've learned:</h3>
+                        <ul style="color: #075985; line-height: 1.8; padding-left: 1.5rem;">
+                            <li>Gravitation is the fundamental attractive force between objects with mass</li>
+                            <li>Newton's Law of Universal Gravitation describes this force mathematically</li>
+                            <li>Gravitational force follows the inverse square law</li>
+                            <li>Mass and weight are different concepts</li>
+                            <li>Gravity shapes everything from falling apples to galaxy formation</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="next-lesson" onclick="completeLesson()">
+                            <i class="fas fa-trophy"></i>
+                            Complete Lesson
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentProgress = 0;
+        let quizCompleted = false;
+        let videoWatched = false;
+        let selectedAnswers = {};
+        let quizSubmitted = false;
+
+        // Progress tracking
+        function updateProgress(increment = 10) {
+            currentProgress = Math.min(currentProgress + increment, 100);
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            progressBar.style.width = currentProgress + '%';
+            
+            if (currentProgress <= 20) {
+                progressText.textContent = 'Getting started with gravitation concepts';
+            } else if (currentProgress <= 40) {
+                progressText.textContent = 'Learning Newton\'s laws and formulas';
+            } else if (currentProgress <= 60) {
+                progressText.textContent = 'Exploring real-world applications';
+            } else if (currentProgress <= 80) {
+                progressText.textContent = 'Testing your knowledge with quizzes';
+            } else if (currentProgress < 100) {
+                progressText.textContent = 'Almost finished with this lesson!';
+            } else {
+                progressText.textContent = 'Congratulations! Lesson completed! 🎉';
+                progressText.style.color = '#10b981';
+                progressText.style.fontWeight = 'bold';
+            }
+        }
+
+        // Video interaction
+        function playVideo() {
+            const videoPlaceholder = document.querySelector('.video-placeholder');
+            videoPlaceholder.innerHTML = `
+                <div style="color: white; text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎥</div>
+                    <h3>Video Playing...</h3>
+                    <p>In a real implementation, this would be an actual video player</p>
+                    <div style="margin-top: 2rem;">
+                        <button onclick="videoCompleted()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
+                            Mark as Watched
+                        </button>
+                    </div>
+                </div>
+            `;
+            updateProgress(20);
+        }
+
+        function videoCompleted() {
+            if (!videoWatched) {
+                videoWatched = true;
+                updateProgress(10);
+                showNotification('Video completed! Great job! 🎉', 'success');
+            }
+        }
+
+        // Quiz functionality
+        function selectOption(optionElement, isCorrect) {
+            if (quizSubmitted) return;
+
+            const questionElement = optionElement.closest('.quiz-question');
+            const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(questionElement);
+            
+            // Remove previous selections in this question
+            questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            optionElement.classList.add('selected');
+            selectedAnswers[questionIndex] = { element: optionElement, correct: isCorrect };
+            
+            updateProgress(5);
+        }
+
+        function submitQuiz() {
+            if (quizSubmitted) return;
+
+            const totalQuestions = document.querySelectorAll('.quiz-question').length;
+            const answeredQuestions = Object.keys(selectedAnswers).length;
+            
+            if (answeredQuestions < totalQuestions) {
+                showNotification('Please answer all questions before submitting!', 'warning');
+                return;
+            }
+
+            quizSubmitted = true;
+            let correctCount = 0;
+
+            // Show correct/incorrect answers
+            Object.keys(selectedAnswers).forEach(questionIndex => {
+                const answer = selectedAnswers[questionIndex];
+                const questionElement = document.querySelectorAll('.quiz-question')[questionIndex];
+                
+                questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    // Show correct answers
+                    if (opt.onclick && opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+
+                if (answer.correct) {
+                    correctCount++;
+                    answer.element.classList.add('correct');
+                } else {
+                    answer.element.classList.add('incorrect');
+                }
+            });
+
+            // Show results
+            const resultDiv = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            const resultScore = document.getElementById('resultScore');
+
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            
+            resultTitle.textContent = `Quiz Complete!`;
+            resultScore.innerHTML = `<div style="font-size: 2rem; font-weight: bold; color: ${percentage >= 70 ? '#10b981' : '#ef4444'}; margin: 1rem 0;">${correctCount}/${totalQuestions} (${percentage}%)</div>`;
+            
+            if (percentage >= 90) {
+                resultMessage.textContent = 'Excellent work! You have mastered the concepts of gravitation! 🌟';
+                resultTitle.style.color = '#10b981';
+            } else if (percentage >= 70) {
+                resultMessage.textContent = 'Good job! You have a solid understanding of gravitation. 👍';
+                resultTitle.style.color = '#059669';
+            } else {
+                resultMessage.textContent = 'Keep learning! Review the lesson content and try again. 📚';
+                resultTitle.style.color = '#dc2626';
+            }
+
+            resultDiv.classList.add('show');
+            updateProgress(20);
+            quizCompleted = true;
+        }
+
+        function completeLesson() {
+            if (!quizCompleted) {
+                showNotification('Please complete the quiz before finishing the lesson!', 'warning');
+                return;
+            }
+
+            updateProgress(20);
+            showNotification('🎉 Congratulations! You have completed the Gravitation lesson!', 'success');
+            
+            // Simulate saving progress
+            setTimeout(() => {
+                alert('Lesson progress saved! You can now proceed to the next lesson or return to the dashboard.');
+            }, 1000);
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#ef4444'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Add CSS for notification animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Intersection Observer for scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.style.animationFillMode = 'both';
+                    updateProgress(2);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize progress
+        updateProgress(5);
+
+        // Handle direct link access
+        if (window.location.hash === '#gravitation-lesson' || window.location.pathname.includes('gravitation')) {
+            updateProgress(5);
+            showNotification('Welcome to the Gravitation lesson! 🌍', 'success');
+        }
+    </script>
+</body>
+</html>
