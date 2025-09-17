@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory of Everything - Science Lesson | LearnQuiz</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6366f1;
+        }
+
+        .logo i {
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #4f46e5;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #1e3a8a, #581c87);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="50" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50px) translateY(-50px) rotate(0deg); }
+            100% { transform: translateX(-50px) translateY(-50px) rotate(360deg); }
+        }
+
+        .lesson-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #6366f1;
+        }
+
+        /* Video Section */
+        .video-container {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3a8a, #581c87);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .play-button i {
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .forces-simulator {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: #111827;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .forces-container {
+            width: 80%;
+            height: 80%;
+            position: relative;
+        }
+
+        .force {
+            position: absolute;
+            padding: 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .gravity {
+            background: radial-gradient(circle, #10b981, #059669);
+            top: 20%;
+            left: 20%;
+            width: 80px;
+            height: 80px;
+        }
+
+        .electromagnetism {
+            background: radial-gradient(circle, #3b82f6, #1d4ed8);
+            top: 20%;
+            right: 20%;
+            width: 70px;
+            height: 70px;
+        }
+
+        .strong {
+            background: radial-gradient(circle, #ef4444, #b91c1c);
+            bottom: 20%;
+            left: 20%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .weak {
+            background: radial-gradient(circle, #f59e0b, #d97706);
+            bottom: 20%;
+            right: 20%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .unification {
+            background: radial-gradient(circle, #8b5cf6, #6d28d9);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .formula {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 1rem;
+        }
+
+        .formula-explanation {
+            color: #78350f;
+            line-height: 1.6;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-option:hover {
+            background: #f3f4f6;
+            border-color: #6366f1;
+        }
+
+        .quiz-option.selected {
+            background: #ddd6fe;
+            border-color: #6366f1;
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #15803d;
+        }
+
+        .quiz-option.incorrect {
+            background: #fef2f2;
+            border-color: #dc2626;
+            color: #dc2626;
+        }
+
+        .submit-quiz {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-quiz:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .quiz-result {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        /* Key Concepts */
+        .concept-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #0ea5e9;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.2);
+        }
+
+        .concept-card h3 {
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .concept-card p {
+            color: #075985;
+            line-height: 1.6;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        .next-lesson {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .next-lesson:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .lesson-header h1 {
+                font-size: 2rem;
+            }
+
+            .lesson-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .concept-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding: 1rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, #6366f1, #8b5cf6);
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #6366f1;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .timeline-date {
+            width: 45%;
+            text-align: right;
+            padding: 0 1rem;
+            font-weight: bold;
+            color: #6366f1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    LearnQuiz
+                </div>
+                <div class="breadcrumb">
+                    <a href="#" onclick="history.back()">Dashboard</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="#" onclick="history.back()">Advanced Physics</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Theory of Everything</span>
+                </div>
+                <a href="#" onclick="history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Courses
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="toe-lesson">
+        <div class="container">
+            
+            <!-- Lesson Header -->
+            <div class="lesson-header fade-in">
+                <h1>Theory of Everything</h1>
+                <p>The ultimate quest to unify all fundamental forces of nature into a single framework</p>
+                <div class="lesson-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>60 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Advanced</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-atom"></i>
+                        <span>Theoretical Physics</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker fade-in">
+                <h3><i class="fas fa-chart-line"></i> Lesson Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                <p id="progressText">Ready to explore the frontiers of theoretical physics!</p>
+            </div>
+
+            <!-- Lesson Content -->
+            <div class="lesson-content slide-in-left">
+                
+                <!-- Introduction -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-play-circle"></i>
+                        Introduction Video
+                    </h2>
+                    <div class="video-container">
+                        <div class="video-placeholder" onclick="playVideo()">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <h3>The Quest for a Unified Theory</h3>
+                            <p>Click to start the lesson video</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
+                        This video introduces the concept of a Theory of Everything and why it represents the holy grail of theoretical physics.
+                    </p>
+                </div>
+
+                <!-- What is the Theory of Everything? -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question-circle"></i>
+                        What is the Theory of Everything?
+                    </h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        The <strong>Theory of Everything (ToE)</strong> is a hypothetical single, all-encompassing, coherent theoretical framework that fully explains and links together all physical aspects of the universe. It would reconcile the four fundamental forces—gravity, electromagnetism, strong nuclear force, and weak nuclear force—into a unified field theory that accounts for all physical phenomena in the universe.
+                    </p>
+                    
+                    <div class="interactive-demo">
+                        <h3 style="margin-bottom: 1rem;">Interactive Force Unification</h3>
+                        <div class="forces-simulator">
+                            <div class="forces-container">
+                                <div class="force gravity">G</div>
+                                <div class="force electromagnetism">EM</div>
+                                <div class="force strong">S</div>
+                                <div class="force weak">W</div>
+                                <div class="force unification">ToE</div>
+                            </div>
+                        </div>
+                        <p style="color: #6b7280; margin-top: 1rem;">
+                            Click the "Unify Forces" button to see how a Theory of Everything would bring all forces together
+                        </p>
+                        <button id="unifyButton" onclick="unifyForces()" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; margin-top: 1rem; font-weight: 600;">
+                            Unify Forces
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Historical Context -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-history"></i>
+                        Historical Quest for Unification
+                    </h2>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">1865</div>
+                            <div class="timeline-content">
+                                <h3>Electromagnetic Unification</h3>
+                                <p>James Clerk Maxwell unified electricity and magnetism into a single electromagnetic theory.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">1915</div>
+                            <div class="timeline-content">
+                                <h3>General Relativity</h3>
+                                <p>Einstein's theory described gravity as a geometric property of spacetime caused by mass and energy.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">1960s-70s</div>
+                            <div class="timeline-content">
+                                <h3>Electroweak Theory</h3>
+                                <p>Sheldon Glashow, Abdus Salam, and Steven Weinberg unified electromagnetic and weak nuclear forces.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">1970s</div>
+                            <div class="timeline-content">
+                                <h3>Standard Model</h3>
+                                <p>Development of the Standard Model, unifying strong, weak, and electromagnetic forces, but excluding gravity.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">1980s-Present</div>
+                            <div class="timeline-content">
+                                <h3>String Theory & Beyond</h3>
+                                <p>Ongoing research into String Theory, M-Theory, Loop Quantum Gravity, and other approaches to achieve complete unification.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leading Approaches -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Leading Theoretical Approaches
+                    </h2>
+                    <div class="concept-cards">
+                        <div class="concept-card">
+                            <h3><i class="fas fa-wave-square"></i> String Theory</h3>
+                            <p>Proposes that fundamental particles are actually tiny vibrating strings. Different vibration patterns create different particles. Requires 10 or 11 dimensions and has multiple variants including Superstring Theory.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h3><i class="fas fa-project-diagram"></i> M-Theory</h3>
+                            <p>A theory that unifies all consistent versions of superstring theory, working in 11 dimensions. It may be the parent theory of all string theories and potentially the Theory of Everything.</p>
+                        </div>
+                        <div class="concept-card">
+                            <h3><i class="fas fa-circle-notch"></i> Loop Quantum Gravity</h3>
+                            <p>Attempts to merge quantum mechanics and general relativity by proposing that space itself is quantized into discrete units called "loops" at the Planck scale.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Challenges -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Major Challenges
+                    </h2>
+                    
+                    <div class="formula-box">
+                        <div class="formula">The Incompatibility Problem</div>
+                        <div class="formula-explanation">
+                            <strong>Quantum Mechanics:</strong> Governs the microscopic world<br>
+                            <strong>General Relativity:</strong> Governs the macroscopic world<br>
+                            <strong>Challenge:</strong> These two fundamental theories use different mathematical frameworks and give contradictory predictions at extreme scales (like black holes or the Big Bang).
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin: 2rem 0;">
+                        Key obstacles to developing a Theory of Everything include:
+                    </p>
+                    
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin-bottom: 1rem; border-radius: 0 10px 10px 0;">
+                            <strong style="color: #b91c1c;">Mathematical Complexity:</strong> The mathematics required goes beyond current techniques.
+                        </li>
+                        <li style="background: #fff7ed; border-left: 4px solid #f59e0b; padding: 1rem; margin-bottom: 1rem; border-radius: 0 10px 10px 0;">
+                            <strong style="color: #d97706;">Experimental Verification:</strong> Many proposed theories require energy levels impossible to test with current technology.
+                        </li>
+                        <li style="background: #f0fdf4; border-left: 4px solid #10b981; padding: 1rem; margin-bottom: 1rem; border-radius: 0 10px 10px 0;">
+                            <strong style="color: #059669;">Quantum Gravity:</strong> No experimentally verified theory of quantum gravity exists yet.
+                        </li>
+                        <li style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 0 10px 10px 0;">
+                            <strong style="color: #1d4ed8;">Multiple Viable Approaches:</strong> Several competing frameworks with no clear way to determine which, if any, is correct.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Real-World Implications -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-rocket"></i>
+                        Potential Implications
+                    </h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        A successful Theory of Everything would have profound implications for science and our understanding of reality:
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                        <div style="background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-radius: 15px; padding: 1.5rem; text-align: center;">
+                            <i class="fas fa-lightbulb" style="font-size: 2rem; color: #0369a1; margin-bottom: 1rem;"></i>
+                            <h3 style="margin-bottom: 0.5rem; color: #0c4a6e;">Complete Understanding</h3>
+                            <p style="color: #075985;">A deeper comprehension of the universe's most fundamental workings.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 15px; padding: 1.5rem; text-align: center;">
+                            <i class="fas fa-bolt" style="font-size: 2rem; color: #16a34a; margin-bottom: 1rem;"></i>
+                            <h3 style="margin-bottom: 0.5rem; color: #14532d;">New Technologies</h3>
+                            <p style="color: #166534;">Potentially revolutionary technologies based on unified force manipulation.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 15px; padding: 1.5rem; text-align: center;">
+                            <i class="fas fa-cogs" style="font-size: 2rem; color: #d97706; margin-bottom: 1rem;"></i>
+                            <h3 style="margin-bottom: 0.5rem; color: #92400e;">Simplified Physics</h3>
+                            <p style="color: #78350f;">Elegantly reducing all physical laws to a set of fundamental principles.</p>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #ddd6fe, #c4b5fd); border-radius: 15px; padding: 1.5rem; text-align: center;">
+                            <i class="fas fa-university" style="font-size: 2rem; color: #7c3aed; margin-bottom: 1rem;"></i>
+                            <h3 style="margin-bottom: 0.5rem; color: #5b21b6;">Philosophical Impact</h3>
+                            <p style="color: #6d28d9;">Redefining our understanding of the nature of reality itself.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interactive Quiz -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question"></i>
+                        Knowledge Check
+                    </h2>
+                    <div class="quiz-section">
+                        <div class="quiz-question">
+                            <div class="question-title">1. What would a Theory of Everything attempt to unify?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Quantum mechanics and thermodynamics
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> Biology and chemistry
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>C)</span> The four fundamental forces: gravity, electromagnetism, strong and weak nuclear forces
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Philosophy and mathematics
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">2. Which two theories have proven most difficult to reconcile in the quest for a Theory of Everything?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Electromagnetism and weak nuclear force
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Quantum mechanics and general relativity
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> String theory and loop quantum gravity
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Special relativity and electrodynamics
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">3. String theory suggests that fundamental particles are actually:</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Tiny black holes
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> Quantum loops of space
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>C)</span> Tiny vibrating strings
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Condensed energy fields
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-question">
+                            <div class="question-title">4. A significant challenge in testing theories of everything is:</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>A)</span> The extreme energy levels required are beyond current technology
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> Scientists aren't interested in unification
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> The mathematics is too simple to describe reality
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> It's already been proven impossible
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">5. Which historical achievement represented the first major unification in physics?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Einstein's theory of general relativity
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Maxwell's unification of electricity and magnetism
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> The development of string theory
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Newton's laws of motion
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="submit-quiz" onclick="submitQuiz()">Submit Quiz</button>
+                        
+                        <div class="quiz-result" id="quizResult">
+                            <h3 id="resultTitle"></h3>
+                            <p id="resultMessage"></p>
+                            <div id="resultScore"></div>
+                        </div>
+                    </div>
+                </div>
