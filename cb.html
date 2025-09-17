@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Bonding - Chemistry Lesson | LearnQuiz</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .logo i {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #e74c3c;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #c0392b;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="3" fill="rgba(231,76,60,0.2)"/><circle cx="70" cy="70" r="2" fill="rgba(192,57,43,0.2)"/><path d="M20 50 Q 50 30 80 50" stroke="rgba(231,76,60,0.1)" stroke-width="2" fill="none"/></svg>');
+            animation: float 25s infinite linear;
+            opacity: 0.4;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50px) translateY(-50px) rotate(0deg); }
+            100% { transform: translateX(-50px) translateY(-50px) rotate(360deg); }
+        }
+
+        .lesson-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #e74c3c;
+        }
+
+        /* Video Section */
+        .video-container {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .play-button i {
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .molecule-visualizer {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: #1f2937;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .molecule-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .atom {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .sodium { background: #e74c3c; }
+        .chlorine { background: #27ae60; }
+        .hydrogen { background: #95a5a6; }
+        .oxygen { background: #c0392b; }
+        .carbon { background: #2c3e50; }
+        .iron { background: #7f8c8d; }
+
+        .bond-line {
+            width: 30px;
+            height: 4px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        .electron-transfer {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 20px;
+            height: 20px;
+            background: #f1c40f;
+            border-radius: 50%;
+            font-size: 0.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Bond Type Cards */
+        .bond-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .bond-card {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #f59e0b;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .bond-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);
+        }
+
+        .bond-card.ionic {
+            background: linear-gradient(135deg, #fef2f2, #fecaca);
+            border-color: #ef4444;
+        }
+
+        .bond-card.covalent {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-color: #3b82f6;
+        }
+
+        .bond-card.metallic {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border-color: #f59e0b;
+        }
+
+        .bond-card h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .bond-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .ionic-icon { background: #ef4444; }
+        .covalent-icon { background: #3b82f6; }
+        .metallic-icon { background: #f59e0b; }
+
+        /* Formula Box */
+        .formula-box {
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+            border: 2px solid #7c3aed;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .formula {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #5b21b6;
+            margin-bottom: 1rem;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .formula-explanation {
+            color: #6d28d9;
+            line-height: 1.6;
+        }
+
+        /* Real-world Applications */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .example-item {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .example-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .example-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #059669;
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: #065f46;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-desc {
+            color: #047857;
+            font-size: 0.9rem;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-option:hover {
+            background: #f3f4f6;
+            border-color: #e74c3c;
+        }
+
+        .quiz-option.selected {
+            background: #fef2f2;
+            border-color: #e74c3c;
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #15803d;
+        }
+
+        .quiz-option.incorrect {
+            background: #fef2f2;
+            border-color: #dc2626;
+            color: #dc2626;
+        }
+
+        .submit-quiz, .next-lesson {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-quiz:hover, .next-lesson:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .quiz-result {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-ionic { background: #e74c3c; }
+        .btn-covalent { background: #3498db; }
+        .btn-metallic { background: #f39c12; }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Bond Simulator */
+        .bond-simulator {
+            background: #1f2937;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .sim-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .sim-button {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .sim-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4);
+        }
+
+        .sim-button.active {
+            background: linear-gradient(135deg, #27ae60, #229954);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .lesson-header h1 {
+                font-size: 2rem;
+            }
+
+            .lesson-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .bond-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .examples-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-flask"></i>
+                    LearnQuiz
+                </div>
+                <div class="breadcrumb">
+                    <a href="#" onclick="history.back()">Dashboard</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="#" onclick="history.back()">Chemistry</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Chemical Bonding</span>
+                </div>
+                <a href="#" onclick="history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Courses
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="bonding-lesson">
+        <div class="container">
+            
+            <!-- Lesson Header -->
+            <div class="lesson-header fade-in">
+                <h1>Chemical Bonding</h1>
+                <p>Understand how atoms connect to form compounds and create the molecular world around us</p>
+                <div class="lesson-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>45 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Intermediate</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-flask"></i>
+                        <span>Chemistry</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker fade-in">
+                <h3><i class="fas fa-chart-line"></i> Lesson Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                <p id="progressText">Ready to explore how atoms bond together!</p>
+            </div>
+
+            <!-- Lesson Content -->
+            <div class="lesson-content slide-in-left">
+                
+                <!-- Introduction Video -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-play-circle"></i>
+                        Introduction Video
+                    </h2>
+                    <div class="video-container">
+                        <div class="video-placeholder" onclick="playVideo()">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <h3>The Science of Chemical Bonds</h3>
+                            <p>Click to discover how atoms connect to form molecules</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
+                        This video introduces the fundamental principles of how atoms form bonds to create stable compounds.
+                    </p>
+                </div>
+
+                <!-- What is Chemical Bonding? -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question-circle"></i>
+                        What is Chemical Bonding?
+                    </h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        <strong>Chemical bonding</strong> is the physical phenomenon of chemical substances being held together by 
+                        attraction between atoms or molecules. These bonds form when atoms share or transfer electrons to achieve 
+                        stable electron configurations. There are three main types of chemical bonds: ionic, covalent, and metallic bonds.
+                    </p>
+                    
+                    <div class="interactive-demo">
+                        <h3 style="margin-bottom: 1rem;">Interactive Molecular Model</h3>
+                        <div class="molecule-visualizer">
+                            <div id="molecular-display" class="molecule-display">
+                                <div class="atom sodium">Na+</div>
+                                <div class="atom chlorine">Cl-</div>
+                                <div class="electron-transfer">e-</div>
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <button class="btn btn-ionic" onclick="showMolecule('ionic')">Ionic: NaCl</button>
+                            <button class="btn btn-covalent" onclick="showMolecule('covalent')">Covalent: H₂O</button>
+                            <button class="btn btn-metallic" onclick="showMolecule('metallic')">Metallic: Fe</button>
+                        </div>
+                        <p style="color: #6b7280; margin-top: 1rem;">
+                            Switch between different bond types to see how atoms connect in various ways.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Types of Chemical Bonds -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-sitemap"></i>
+                        Types of Chemical Bonds
+                    </h2>
+                    <div class="bond-cards">
+                        <div class="bond-card ionic">
+                            <h3>
+                                <div class="bond-icon ionic-icon">I</div>
+                                Ionic Bonding
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                Occurs between metals and non-metals. Electrons are transferred from metal atoms to non-metal atoms, 
+                                creating charged ions that attract each other through electrostatic forces.
+                            </p>
+                            <div style="background: rgba(239, 68, 68, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #dc2626;">Examples:</strong> NaCl (table salt), MgO (magnesium oxide), CaF₂ (calcium fluoride)
+                            </div>
+                        </div>
+                        <div class="bond-card covalent">
+                            <h3>
+                                <div class="bond-icon covalent-icon">C</div>
+                                Covalent Bonding
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                Occurs between non-metals. Atoms share pairs of electrons to achieve stable electron configurations. 
+                                Can form single, double, or triple bonds depending on the number of shared electron pairs.
+                            </p>
+                            <div style="background: rgba(59, 130, 246, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #2563eb;">Examples:</strong> H₂O (water), CO₂ (carbon dioxide), CH₄ (methane)
+                            </div>
+                        </div>
+                        <div class="bond-card metallic">
+                            <h3>
+                                <div class="bond-icon metallic-icon">M</div>
+                                Metallic Bonding
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                Occurs between metal atoms. Electrons form a "sea of electrons" that moves freely around positively 
+                                charged metal ions, creating strong, flexible bonds that allow for conductivity.
+                            </p>
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d97706;">Examples:</strong> Fe (iron), Cu (copper), Al (aluminum)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bond Formation -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-cogs"></i>
+                        How Bonds Form
+                    </h2>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        Chemical bonds form to achieve <strong>stable electron configurations</strong>. Atoms tend to gain, lose, 
+                        or share electrons to achieve a full outer shell, typically following the octet rule (8 electrons in the outer shell).
+                    </p>
+
+                    <div class="formula-box">
+                        <div class="formula">Na + Cl → Na⁺ + Cl⁻ → NaCl</div>
+                        <div class="formula-explanation">
+                            <strong>Ionic Bond Formation:</strong><br>
+                            Sodium (Na) loses one electron to become Na⁺<br>
+                            Chlorine (Cl) gains that electron to become Cl⁻<br>
+                            The opposite charges attract to form NaCl
+                        </div>
+                    </div>
+
+                    <div class="bond-simulator">
+                        <h3 style="margin-bottom: 1rem; color: #e5e7eb;">Bond Formation Simulator</h3>
+                        <p style="color: #d1d5db; margin-bottom: 1rem;">Click to simulate different bond formations:</p>
+                        <div class="sim-controls">
+                            <button class="sim-button" onclick="simulateBond('ionic')">Simulate Ionic Bond</button>
+                            <button class="sim-button" onclick="simulateBond('covalent')">Simulate Covalent Bond</button>
+                            <button class="sim-button" onclick="simulateBond('metallic')">Simulate Metallic Bond</button>
+                        </div>
+                        <div id="simulation-result" style="background: #374151; border-radius: 8px; padding: 1rem; margin-top: 1rem; display: none;">
+                            <strong>Simulation:</strong> <span id="simulation-text"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Applications -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-globe-americas"></i>
+                        Real-World Applications
+                    </h2>
+                    <div class="examples-grid">
+                        <div class="example-item">
+                            <div class="example-icon">🧂</div>
+                            <div class="example-title">Table Salt (NaCl)</div>
+                            <div class="example-desc">Ionic bonding creates the crystals we use to season our food and preserve it.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">💧</div>
+                            <div class="example-title">Water (H₂O)</div>
+                            <div class="example-desc">Covalent bonds form water molecules, essential for all life on Earth.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">⚡</div>
+                            <div class="example-title">Copper Wires</div>
+                            <div class="example-desc">Metallic bonding allows copper to conduct electricity in electrical systems.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">💎</div>
+                            <div class="example-title">Diamond</div>
+                            <div class="example-desc">Covalent bonds in a 3D network make diamond the hardest natural material.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🦴</div>
+                            <div class="example-title">Bones & Teeth</div>
+                            <div class="example-desc">Ionic compounds like calcium phosphate provide strength to our skeletal system.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🔋</div>
+                            <div class="example-title">Batteries</div>
+                            <div class="example-desc">Ionic compounds in batteries allow the flow of electric current through chemical reactions.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Quiz -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question"></i>
+                        Knowledge Check
+                    </h2>
+                    <div class="quiz-section">
+                        <div class="quiz-question">
+                            <div class="question-title">1. What type of bonding occurs in water (H₂O)?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Ionic bonding
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Covalent bonding
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Metallic bonding
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> No bonding
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">2. In ionic bonding, electrons are:</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Shared between atoms
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Transferred from one atom to another
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Delocalized in a "sea of electrons"
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Not involved in bonding
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">3. Which property is characteristic of metallic bonding?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Forms crystals that dissolve in water
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> Creates discrete molecules
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>C)</span> Allows electrical conductivity
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Forms gases at room temperature
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">4. The octet rule states that atoms tend to:</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Have 8 protons in their nucleus
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Achieve 8 electrons in their outer shell
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Form 8 bonds with other atoms
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Have an atomic mass of 8
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="submit-quiz" onclick="submitQuiz()">Submit Quiz</button>
+                        
+                        <div class="quiz-result" id="quizResult">
+                            <h3 id="resultTitle"></h3>
+                            <p id="resultMessage"></p>
+                            <div id="resultScore"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-check-circle"></i>
+                        Lesson Summary
+                    </h2>
+                    <div style="background: #fef7cd; border-left: 4px solid #f59e0b; padding: 2rem; border-radius: 10px;">
+                        <h3 style="color: #92400e; margin-bottom: 1rem;">What you've learned:</h3>
+                        <ul style="color: #78350f; line-height: 1.8; padding-left: 1.5rem;">
+                            <li>Chemical bonds form when atoms share or transfer electrons to achieve stability</li>
+                            <li>Ionic bonds occur between metals and non-metals through electron transfer</li>
+                            <li>Covalent bonds occur between non-metals through electron sharing</li>
+                            <li>Metallic bonds create a "sea of electrons" allowing conductivity</li>
+                            <li>Different bond types create materials with unique properties</li>
+                            <li>Chemical bonding explains the properties of everyday substances</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="next-lesson" onclick="completeLesson()">
+                            <i class="fas fa-trophy"></i>
+                            Complete Lesson
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentProgress = 0;
+        let quizCompleted = false;
+        let videoWatched = false;
+        let selectedAnswers = {};
+        let quizSubmitted = false;
+        let currentMolecule = 'ionic';
+
+        // Progress tracking
+        function updateProgress(increment = 10) {
+            currentProgress = Math.min(currentProgress + increment, 100);
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            progressBar.style.width = currentProgress + '%';
+            
+            if (currentProgress <= 20) {
+                progressText.textContent = 'Learning about chemical bonding fundamentals';
+            } else if (currentProgress <= 40) {
+                progressText.textContent = 'Understanding ionic and covalent bonds';
+            } else if (currentProgress <= 60) {
+                progressText.textContent = 'Exploring metallic bonding and electron behavior';
+            } else if (currentProgress <= 80) {
+                progressText.textContent = 'Applying bond concepts to real-world examples';
+            } else if (currentProgress < 100) {
+                progressText.textContent = 'Nearly mastered chemical bonding!';
+            } else {
+                progressText.textContent = 'Chemical bonding mastery achieved! 🎉';
+                progressText.style.color = '#10b981';
+                progressText.style.fontWeight = 'bold';
+            }
+        }
+
+        // Video interaction
+        function playVideo() {
+            const videoPlaceholder = document.querySelector('.video-placeholder');
+            videoPlaceholder.innerHTML = `
+                <div style="color: white; text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🧪</div>
+                    <h3>Video Playing...</h3>
+                    <p>Learning about atoms, electrons, and chemical bonds</p>
+                    <div style="margin-top: 2rem;">
+                        <button onclick="videoCompleted()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
+                            Mark as Watched
+                        </button>
+                    </div>
+                </div>
+            `;
+            updateProgress(12);
+        }
+
+        function videoCompleted() {
+            if (!videoWatched) {
+                videoWatched = true;
+                updateProgress(8);
+                showNotification('Video completed! Ready to explore chemical bonds! ⚛️', 'success');
+            }
+        }
+
+        // Molecule visualization
+        function showMolecule(type) {
+            currentMolecule = type;
+            const display = document.getElementById('molecular-display');
+            
+            if (type === 'ionic') {
+                display.innerHTML = `
+                    <div class="atom sodium">Na+</div>
+                    <div class="atom chlorine">Cl-</div>
+                    <div class="electron-transfer">e-</div>
+                `;
+            } else if (type === 'covalent') {
+                display.innerHTML = `
+                    <div class="atom hydrogen">H</div>
+                    <div class="bond-line"></div>
+                    <div class="atom oxygen">O</div>
+                    <div class="bond-line"></div>
+                    <div class="atom hydrogen">H</div>
+                `;
+            } else if (type === 'metallic') {
+                display.innerHTML = `
+                    <div class="atom iron">Fe</div>
+                    <div class="atom iron">Fe</div>
+                    <div class="atom iron">Fe</div>
+                    <div class="atom iron">Fe</div>
+                `;
+            }
+            updateProgress(5);
+        }
+
+        // Bond simulation
+        function simulateBond(type) {
+            const resultDiv = document.getElementById('simulation-result');
+            const textSpan = document.getElementById('simulation-text');
+            
+            document.querySelectorAll('.sim-button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            let simulation = '';
+            if (type === 'ionic') {
+                simulation = 'Na atom loses 1 electron → Na+ ion. Cl atom gains 1 electron → Cl- ion. Na+ and Cl- attract to form NaCl crystal.';
+            } else if (type === 'covalent') {
+                simulation = 'H atoms share electrons with O atom. Each H forms 1 bond with O. O forms 2 bonds total, creating H₂O molecule.';
+            } else if (type === 'metallic') {
+                simulation = 'Metal atoms release outer electrons. Electrons form mobile "sea" around positive metal ions. This allows conductivity.';
+            }
+            
+            textSpan.textContent = simulation;
+            resultDiv.style.display = 'block';
+            updateProgress(8);
+        }
+
+        // Quiz functionality
+        function selectOption(optionElement, isCorrect) {
+            if (quizSubmitted) return;
+
+            const questionElement = optionElement.closest('.quiz-question');
+            const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(questionElement);
+            
+            // Remove previous selections in this question
+            questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            optionElement.classList.add('selected');
+            selectedAnswers[questionIndex] = { element: optionElement, correct: isCorrect };
+            
+            updateProgress(3);
+        }
+
+        function submitQuiz() {
+            if (quizSubmitted) return;
+
+            const totalQuestions = document.querySelectorAll('.quiz-question').length;
+            const answeredQuestions = Object.keys(selectedAnswers).length;
+            
+            if (answeredQuestions < totalQuestions) {
+                showNotification('Please answer all questions before submitting!', 'warning');
+                return;
+            }
+
+            quizSubmitted = true;
+            let correctCount = 0;
+
+            // Show correct/incorrect answers
+            Object.keys(selectedAnswers).forEach(questionIndex => {
+                const answer = selectedAnswers[questionIndex];
+                const questionElement = document.querySelectorAll('.quiz-question')[questionIndex];
+                
+                questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    // Show correct answers
+                    if (opt.onclick && opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+
+                if (answer.correct) {
+                    correctCount++;
+                    answer.element.classList.add('correct');
+                } else {
+                    answer.element.classList.add('incorrect');
+                }
+            });
+
+            // Show results
+            const resultDiv = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            const resultScore = document.getElementById('resultScore');
+
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            
+            resultTitle.textContent = `Quiz Complete!`;
+            resultScore.innerHTML = `<div style="font-size: 2rem; font-weight: bold; color: ${percentage >= 70 ? '#10b981' : '#ef4444'}; margin: 1rem 0;">${correctCount}/${totalQuestions} (${percentage}%)</div>`;
+            
+            if (percentage >= 90) {
+                resultMessage.textContent = 'Outstanding! You have mastered chemical bonding concepts! ⭐';
+                resultTitle.style.color = '#10b981';
+            } else if (percentage >= 70) {
+                resultMessage.textContent = 'Great job! You understand the key principles of chemical bonding. 👍';
+                resultTitle.style.color = '#059669';
+            } else {
+                resultMessage.textContent = 'Keep studying! Review the bond types and try again. 📚';
+                resultTitle.style.color = '#dc2626';
+            }
+
+            resultDiv.classList.add('show');
+            updateProgress(15);
+            quizCompleted = true;
+        }
+
+        function completeLesson() {
+            if (!quizCompleted) {
+                showNotification('Please complete the quiz before finishing the lesson!', 'warning');
+                return;
+            }
+
+            updateProgress(10);
+            showNotification('🎉 Excellent! You have completed Chemical Bonding!', 'success');
+            
+            // Simulate saving progress
+            setTimeout(() => {
+                alert('Lesson progress saved! You\'re ready for advanced chemistry topics.');
+            }, 1000);
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#ef4444'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+
+        // Add CSS for notification animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Intersection Observer for scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.style.animationFillMode = 'both';
+                    updateProgress(2);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize progress and default molecule display
+        updateProgress(5);
+        showMolecule('ionic');
+
+        // Handle direct link access
+        if (window.location.hash === '#bonding-lesson' || window.location.pathname.includes('bonding')) {
+            updateProgress(5);
+            showNotification('Welcome to Chemical Bonding! Ready to explore how atoms connect? ⚛️', 'success');
+        }
+    </script>
+</body>
+</html>
