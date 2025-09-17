@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievement Unlocked! | LearnQuiz</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .achievement-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .achievement-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,215,0,0.3)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,215,0,0.4)"/><circle cx="30" cy="70" r="1" fill="rgba(255,215,0,0.5)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,215,0,0.3)"/><circle cx="50" cy="10" r="1.2" fill="rgba(255,215,0,0.4)"/></svg>');
+            animation: float 15s infinite linear;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-25px) translateY(-25px) rotate(0deg); }
+            100% { transform: translateX(-25px) translateY(-25px) rotate(360deg); }
+        }
+
+        .achievement-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .trophy-icon {
+            font-size: 5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .achievement-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .achievement-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+
+        .subjects-completed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .subject-badge {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid #dee2e6;
+            border-radius: 15px;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+
+        .subject-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .subject-badge.math {
+            border-color: #7c3aed;
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+        }
+
+        .subject-badge.chemistry {
+            border-color: #e74c3c;
+            background: linear-gradient(135deg, #fef2f2, #fecaca);
+        }
+
+        .subject-badge.biology {
+            border-color: #16a34a;
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        }
+
+        .subject-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subject-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+        }
+
+        .continue-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            animation: confetti-fall 3s infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti:nth-child(1) { left: 10%; animation-delay: 0s; background: #ff6b6b; }
+        .confetti:nth-child(2) { left: 20%; animation-delay: 0.5s; background: #4ecdc4; }
+        .confetti:nth-child(3) { left: 30%; animation-delay: 1s; background: #45b7d1; }
+        .confetti:nth-child(4) { left: 40%; animation-delay: 1.5s; background: #96ceb4; }
+        .confetti:nth-child(5) { left: 50%; animation-delay: 2s; background: #ffd700; }
+        .confetti:nth-child(6) { left: 60%; animation-delay: 2.5s; background: #ff9ff3; }
+        .confetti:nth-child(7) { left: 70%; animation-delay: 0.8s; background: #54a0ff; }
+        .confetti:nth-child(8) { left: 80%; animation-delay: 1.2s; background: #5f27cd; }
+        .confetti:nth-child(9) { left: 90%; animation-delay: 1.8s; background: #ff3838; }
+
+        @media (max-width: 768px) {
+            .achievement-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .achievement-title {
+                font-size: 2rem;
+            }
+            
+            .subjects-completed {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti -->
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+
+    <div class="achievement-container">
+        <div class="achievement-content">
+            <div class="trophy-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            
+            <h1 class="achievement-title">Achievement Unlocked!</h1>
+            <p class="achievement-subtitle">STEM Explorer - Master of Multiple Disciplines</p>
+            
+            <div class="subjects-completed">
+                <div class="subject-badge math">
+                    <div class="subject-icon">∫</div>
+                    <div class="subject-name">Calculus</div>
+                </div>
+                <div class="subject-badge chemistry">
+                    <div class="subject-icon">⚗️</div>
+                    <div class="subject-name">Chemistry</div>
+                </div>
+                <div class="subject-badge biology">
+                    <div class="subject-icon">🔬</div>
+                    <div class="subject-name">Cell Biology</div>
+                </div>
+                <div class="subject-badge biology">
+                    <div class="subject-icon">🧬</div>
+                    <div class="subject-name">Genetics</div>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Lessons Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Progress</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Concepts Mastered</div>
+                </div>
+            </div>
+            
+            <p style="color: #6c757d; margin: 1rem 0; font-style: italic;">
+                "The expert in anything was once a beginner who refused to give up."
+            </p>
+            
+            <button class="continue-btn" onclick="celebrateMore()">
+                <i class="fas fa-star"></i>
+                Continue Learning Journey
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function celebrateMore() {
+            // Add more celebration effects
+            const container = document.querySelector('.achievement-container');
+            container.style.animation = 'none';
+            container.style.transform = 'scale(1.05)';
+            
+            setTimeout(() => {
+                container.style.transform = 'scale(1)';
+                alert('🎉 Congratulations! You\'ve mastered the fundamentals across Mathematics, Chemistry, and Biology. Ready for advanced topics!');
+            }, 200);
+        }
+
+        // Auto-play celebration sound effect (visual)
+        setTimeout(() => {
+            const trophy = document.querySelector('.trophy-icon');
+            trophy.style.color = '#ff6b6b';
+            setTimeout(() => trophy.style.color = '#4ecdc4', 300);
+            setTimeout(() => trophy.style.color = '#ffd700', 600);
+        }, 1000);
+    </script>
+</body>
+</html>
