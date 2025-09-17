@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Box Prototype</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      width: 400px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+    }
+    .message {
+      background: #e1f5fe;
+      padding: 10px 14px;
+      margin: 8px 0;
+      border-radius: 8px;
+      font-size: 14px;
+      align-self: flex-end;
+      max-width: 80%;
+    }
+    .input-box {
+      border-top: 1px solid #ddd;
+      display: flex;
+    }
+    .input-box input {
+      border: none;
+      padding: 14px;
+      font-size: 14px;
+      flex: 1;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="messages" id="messages">
+      <!-- Sent queries will appear here -->
+    </div>
+    <div class="input-box">
+      <input type="text" id="queryInput" placeholder="Type your query and hit Enter...">
+    </div>
+  </div>
+
+  <script>
+    const input = document.getElementById("queryInput");
+    const messages = document.getElementById("messages");
+
+    input.addEventListener("keypress", function(event) {
+      if (event.key === "Enter" && input.value.trim() !== "") {
+        const msg = document.createElement("div");
+        msg.classList.add("message");
+        msg.textContent = input.value;
+        messages.appendChild(msg);
+        input.value = "";
+        messages.scrollTop = messages.scrollHeight; // auto-scroll
+      }
+    });
+  </script>
+</body>
+</html>
