@@ -746,24 +746,36 @@
             <div class="lesson-content slide-in-left">
                 
                 <!-- Introduction Video -->
-                <div class="content-section">
-                    <h2 class="section-title">
-                        <i class="fas fa-play-circle"></i>
-                        Introduction Video
-                    </h2>
-                    <div class="video-container">
-                        <div class="video-placeholder" onclick="playVideo()">
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <h3>The Science of Chemical Bonds</h3>
-                            <p>Click to discover how atoms connect to form molecules</p>
-                        </div>
-                    </div>
-                    <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
-                        This video introduces the fundamental principles of how atoms form bonds to create stable compounds.
-                    </p>
-                </div>
+              <div class="content-section">
+  <h2 class="section-title">
+    <i class="fas fa-play-circle"></i>
+    Introduction Video
+  </h2>
+  <div class="video-container">
+    <div class="video-placeholder" onclick="playVideo()">
+      <div class="play-button">
+        <i class="fas fa-play"></i>
+      </div>
+      <h3>The Science of Chemical Bonds</h3>
+      <p>Click to discover how atoms connect to form molecules</p>
+    </div>
+    <iframe id="lessonVideo" width="100%" height="400" style="display:none; margin-top:10px;" 
+      src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+    </iframe>
+  </div>
+  <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
+    This video introduces the fundamental principles of how atoms form bonds to create stable compounds.
+  </p>
+</div>
+
+<script>
+  function playVideo() {
+    const iframe = document.getElementById("lessonVideo");
+    iframe.style.display = "block";
+    iframe.src = "https://www.youtube.com/embed/S_k0kr2eZSQ?autoplay=1";
+  }
+</script>
+
 
                 <!-- What is Chemical Bonding? -->
                 <div class="content-section">
