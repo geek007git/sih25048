@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cell Structure - Biology Lesson | LearnQuiz</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #16a34a;
+        }
+
+        .logo i {
+            background: linear-gradient(45deg, #16a34a, #15803d);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #16a34a;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #15803d;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(22, 163, 74, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="8" fill="rgba(22,163,74,0.1)" stroke="rgba(22,163,74,0.2)" stroke-width="2"/><circle cx="70" cy="70" r="6" fill="rgba(34,197,94,0.1)" stroke="rgba(34,197,94,0.2)" stroke-width="1.5"/><circle cx="50" cy="20" r="4" fill="rgba(22,163,74,0.2)"/><circle cx="80" cy="40" r="3" fill="rgba(34,197,94,0.2)"/></svg>');
+            animation: float 25s infinite linear;
+            opacity: 0.4;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50px) translateY(-50px) rotate(0deg); }
+            100% { transform: translateX(-50px) translateY(-50px) rotate(360deg); }
+        }
+
+        .lesson-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #16a34a, #15803d);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #16a34a;
+        }
+
+        /* Video Section */
+        .video-container {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .play-button i {
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        /* Cell Visualizer */
+        .interactive-demo {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cell-visualizer {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #1f2937;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cell-diagram {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border: 3px solid #16a34a;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(34, 197, 94, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .organelle {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .organelle:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        .nucleus {
+            width: 80px;
+            height: 80px;
+            background: #7c3aed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .mitochondria {
+            width: 40px;
+            height: 60px;
+            background: #dc2626;
+            border-radius: 20px;
+            top: 30%;
+            left: 25%;
+        }
+
+        .ribosome {
+            width: 20px;
+            height: 20px;
+            background: #f59e0b;
+            top: 70%;
+            left: 70%;
+        }
+
+        .er {
+            width: 60px;
+            height: 30px;
+            background: #06b6d4;
+            border-radius: 15px;
+            top: 25%;
+            right: 20%;
+        }
+
+        .golgi {
+            width: 50px;
+            height: 35px;
+            background: #8b5cf6;
+            border-radius: 10px;
+            bottom: 25%;
+            left: 30%;
+        }
+
+        .vacuole {
+            width: 70px;
+            height: 70px;
+            background: rgba(34, 197, 94, 0.6);
+            border: 2px solid #16a34a;
+            bottom: 20%;
+            right: 20%;
+        }
+
+        /* Cell Type Cards */
+        .cell-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .cell-card {
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cell-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .cell-card.prokaryotic {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #f59e0b;
+        }
+
+        .cell-card.eukaryotic {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border: 1px solid #16a34a;
+        }
+
+        .cell-card h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .cell-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .prokaryotic-icon { background: #f59e0b; }
+        .eukaryotic-icon { background: #16a34a; }
+
+        /* Organelle Info */
+        .organelle-info {
+            background: #1f2937;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .organelle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .organelle-card {
+            background: #374151;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .organelle-card:hover {
+            background: #4b5563;
+            transform: translateY(-3px);
+        }
+
+        .organelle-card h4 {
+            color: #22c55e;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Real-world Applications */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .example-item {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .example-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .example-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #059669;
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: #065f46;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-desc {
+            color: #047857;
+            font-size: 0.9rem;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-option:hover {
+            background: #f3f4f6;
+            border-color: #16a34a;
+        }
+
+        .quiz-option.selected {
+            background: #f0fdf4;
+            border-color: #16a34a;
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #15803d;
+        }
+
+        .quiz-option.incorrect {
+            background: #fef2f2;
+            border-color: #dc2626;
+            color: #dc2626;
+        }
+
+        .submit-quiz, .next-lesson {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-quiz:hover, .next-lesson:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(22, 163, 74, 0.4);
+        }
+
+        .quiz-result {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-prokaryotic { background: #f59e0b; }
+        .btn-eukaryotic { background: #16a34a; }
+        .btn-plant { background: #059669; }
+        .btn-animal { background: #0ea5e9; }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip.show {
+            opacity: 1;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .lesson-header h1 {
+                font-size: 2rem;
+            }
+
+            .lesson-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cell-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .examples-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cell-diagram {
+                width: 280px;
+                height: 280px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-microscope"></i>
+                    LearnQuiz
+                </div>
+                <div class="breadcrumb">
+                    <a href="#" onclick="history.back()">Dashboard</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="#" onclick="history.back()">Biology</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Cell Structure</span>
+                </div>
+                <a href="#" onclick="history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Courses
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="cell-lesson">
+        <div class="container">
+            
+            <!-- Lesson Header -->
+            <div class="lesson-header fade-in">
+                <h1>Cell Structure</h1>
+                <p>Explore the fundamental units of life and discover how cellular components work together</p>
+                <div class="lesson-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>50 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Beginner</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-microscope"></i>
+                        <span>Biology</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker fade-in">
+                <h3><i class="fas fa-chart-line"></i> Lesson Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                <p id="progressText">Ready to discover the building blocks of life!</p>
+            </div>
+
+            <!-- Lesson Content -->
+            <div class="lesson-content slide-in-left">
+                
+                <!-- Introduction Video -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-play-circle"></i>
+                        Introduction Video
+                    </h2>
+                    <div class="video-container">
+                        <div class="video-placeholder" onclick="playVideo()">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <h3>Journey Inside the Cell</h3>
+                            <p>Click to explore the microscopic world of cellular life</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
+                        This video takes you on a journey through the cell, revealing the intricate structures that make life possible.
+                    </p>
+                </div>
+
+                <!-- What is a Cell? -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question-circle"></i>
+                        What is a Cell?
+                    </h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        A <strong>cell</strong> is the basic structural and functional unit of all living organisms. Every living thing, 
+                        from the tiniest bacteria to the largest whale, is made up of cells. Cells carry out all the processes 
+                        necessary for life, including growth, reproduction, metabolism, and response to the environment.
+                    </p>
+                    
+                    <div class="interactive-demo">
+                        <h3 style="margin-bottom: 1rem;">Interactive Cell Diagram</h3>
+                        <div class="cell-visualizer">
+                            <div id="cell-diagram" class="cell-diagram">
+                                <div class="organelle nucleus" data-info="Control center of the cell, contains DNA">Nucleus</div>
+                                <div class="organelle mitochondria" data-info="Powerhouse of the cell, produces ATP energy">Mito</div>
+                                <div class="organelle ribosome" data-info="Protein synthesis factories">Ribo</div>
+                                <div class="organelle er" data-info="Transport system, protein and lipid synthesis">ER</div>
+                                <div class="organelle golgi" data-info="Modifies and packages proteins">Golgi</div>
+                                <div class="organelle vacuole" data-info="Storage compartment, maintains cell pressure">Vacuole</div>
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <button class="btn btn-animal" onclick="showCell('animal')">Animal Cell</button>
+                            <button class="btn btn-plant" onclick="showCell('plant')">Plant Cell</button>
+                            <button class="btn btn-prokaryotic" onclick="showCell('prokaryotic')">Bacterial Cell</button>
+                        </div>
+                        <p style="color: #6b7280; margin-top: 1rem;">
+                            Hover over organelles to learn their functions. Switch between cell types to see the differences.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cell Types -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-sitemap"></i>
+                        Types of Cells
+                    </h2>
+                    <div class="cell-cards">
+                        <div class="cell-card prokaryotic">
+                            <h3>
+                                <div class="cell-icon prokaryotic-icon">P</div>
+                                Prokaryotic Cells
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                Simple cells without a membrane-bound nucleus. The genetic material floats freely in the cytoplasm. 
+                                Found in bacteria and archaea, these ancient cell types are typically smaller and less complex.
+                            </p>
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #d97706;">Examples:</strong> E. coli bacteria, Streptococcus, Cyanobacteria, Methanogens
+                            </div>
+                        </div>
+                        <div class="cell-card eukaryotic">
+                            <h3>
+                                <div class="cell-icon eukaryotic-icon">E</div>
+                                Eukaryotic Cells
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                Complex cells with a membrane-bound nucleus containing DNA. They have specialized organelles 
+                                that perform specific functions. Found in plants, animals, fungi, and protists.
+                            </p>
+                            <div style="background: rgba(22, 163, 74, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #15803d;">Examples:</strong> Human cells, Plant cells, Yeast, Amoeba, Paramecium
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cell Organelles -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-cogs"></i>
+                        Cell Organelles and Their Functions
+                    </h2>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        <strong>Organelles</strong> are specialized structures within cells that perform specific functions. 
+                        Think of them as the "organs" of the cell, each with a unique role in keeping the cell alive and functioning properly.
+                    </p>
+
+                    <div class="organelle-info">
+                        <h3 style="margin-bottom: 1rem; color: #e5e7eb;">Major Organelles</h3>
+                        <div class="organelle-grid">
+                            <div class="organelle-card">
+                                <h4><i class="fas fa-crown"></i> Nucleus</h4>
+                                <p>The control center containing DNA. Regulates gene expression and cell reproduction.</p>
+                            </div>
+                            <div class="organelle-card">
+                                <h4><i class="fas fa-bolt"></i> Mitochondria</h4>
+                                <p>The powerhouse that produces ATP energy through cellular respiration.</p>
+                            </div>
+                            <div class="organelle-card">
+                                <h4><i class="fas fa-industry"></i> Ribosomes</h4>
+                                <p>Protein synthesis factories that translate mRNA into proteins.</p>
+                            </div>
+                            <div class="organelle-card">
+                                <h4><i class="fas fa-network-wired"></i> Endoplasmic Reticulum</h4>
+                                <p>Transport network for proteins (rough ER) and lipid synthesis (smooth ER).</p>
+                            </div>
+                            <div class="organelle-card">
+                                <h4><i class="fas fa-shipping-fast"></i> Golgi Apparatus</h4>
+                                <p>Modifies, packages, and ships proteins from the ER.</p>
+                            </div>
+                            <div class="organelle-card">
+                                <h4><i class="fas fa-archive"></i> Vacuoles</h4>
+                                <p>Storage compartments for water, nutrients, and waste products.</p>
+                            </div>
+                            <div class="organelle-card">
+                                <h4><i class="fas fa-sun"></i> Chloroplasts</h4>
+                                <p>Found in plants, these organelles conduct photosynthesis using sunlight.</p>
+                            </div>
+                            <div class="organelle-card">
+                                <h4><i class="fas fa-shield-alt"></i> Cell Wall</h4>
+                                <p>Rigid structure in plants and bacteria providing shape and protection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Applications -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-globe-americas"></i>
+                        Real-World Applications
+                    </h2>
+                    <div class="examples-grid">
+                        <div class="example-item">
+                            <div class="example-icon">🔬</div>
+                            <div class="example-title">Medical Research</div>
+                            <div class="example-desc">Understanding cell structure helps develop treatments for diseases like cancer and diabetes.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🧬</div>
+                            <div class="example-title">Genetic Engineering</div>
+                            <div class="example-desc">Scientists modify cellular components to produce medicines and improve crops.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🦠</div>
+                            <div class="example-title">Antibiotics</div>
+                            <div class="example-desc">Many antibiotics work by targeting specific structures in bacterial cells.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🌱</div>
+                            <div class="example-title">Agriculture</div>
+                            <div class="example-desc">Understanding plant cells helps develop better fertilizers and pest resistance.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🧪</div>
+                            <div class="example-title">Biotechnology</div>
+                            <div class="example-desc">Cells are used as factories to produce insulin, vaccines, and other medical products.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🔋</div>
+                            <div class="example-title">Biofuels</div>
+                            <div class="example-desc">Algae and bacterial cells are engineered to produce sustainable energy sources.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Quiz -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question"></i>
+                        Knowledge Check
+                    </h2>
+                    <div class="quiz-section">
+                        <div class="quiz-question">
+                            <div class="question-title">1. What is the main difference between prokaryotic and eukaryotic cells?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Size differences
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Presence of a membrane-bound nucleus
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Number of chromosomes
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Type of cell wall
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">2. Which organelle is known as the "powerhouse of the cell"?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Nucleus
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Mitochondria
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Ribosome
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Golgi apparatus
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">3. Which structure is unique to plant cells?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Nucleus
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> Mitochondria
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>C)</span> Chloroplasts
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Ribosomes
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">4. What is the primary function of ribosomes?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Energy production
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Protein synthesis
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> DNA storage
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Waste removal
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">5. Which organelle modifies and packages proteins?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Endoplasmic reticulum
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Golgi apparatus
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Vacuole
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Lysosome
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="submit-quiz" onclick="submitQuiz()">Submit Quiz</button>
+                        
+                        <div class="quiz-result" id="quizResult">
+                            <h3 id="resultTitle"></h3>
+                            <p id="resultMessage"></p>
+                            <div id="resultScore"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-check-circle"></i>
+                        Lesson Summary
+                    </h2>
+                    <div style="background: #fef7cd; border-left: 4px solid #f59e0b; padding: 2rem; border-radius: 10px;">
+                        <h3 style="color: #92400e; margin-bottom: 1rem;">What you've learned:</h3>
+                        <ul style="color: #78350f; line-height: 1.8; padding-left: 1.5rem;">
+                            <li>Cells are the basic units of all living organisms</li>
+                            <li>Prokaryotic cells lack a membrane-bound nucleus</li>
+                            <li>Eukaryotic cells have specialized organelles with specific functions</li>
+                            <li>The nucleus controls cell activities and contains DNA</li>
+                            <li>Mitochondria produce energy for cellular processes</li>
+                            <li>Different organelles work together to maintain cellular life</li>
+                            <li>Understanding cell structure has important medical and technological applications</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="next-lesson" onclick="completeLesson()">
+                            <i class="fas fa-trophy"></i>
+                            Complete Lesson
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <script>
+        let currentProgress = 0;
+        let quizCompleted = false;
+        let videoWatched = false;
+        let selectedAnswers = {};
+        let quizSubmitted = false;
+        let currentCellType = 'animal';
+
+        // Progress tracking
+        function updateProgress(increment = 8) {
+            currentProgress = Math.min(currentProgress + increment, 100);
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            progressBar.style.width = currentProgress + '%';
+            
+            if (currentProgress <= 15) {
+                progressText.textContent = 'Beginning your cellular journey';
+            } else if (currentProgress <= 35) {
+                progressText.textContent = 'Exploring cell structure and organization';
+            } else if (currentProgress <= 55) {
+                progressText.textContent = 'Understanding organelle functions';
+            } else if (currentProgress <= 75) {
+                progressText.textContent = 'Learning about cellular processes';
+            } else if (currentProgress < 100) {
+                progressText.textContent = 'Nearly mastered cell biology!';
+            } else {
+                progressText.textContent = 'Cell structure mastery achieved! 🏆';
+                progressText.style.color = '#10b981';
+                progressText.style.fontWeight = 'bold';
+            }
+        }
+
+        // Video interaction
+        function playVideo() {
+            const videoPlaceholder = document.querySelector('.video-placeholder');
+            videoPlaceholder.innerHTML = `
+                <div style="color: white; text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔬</div>
+                    <h3>Video Playing...</h3>
+                    <p>Exploring cellular structures and their amazing functions</p>
+                    <div style="margin-top: 2rem;">
+                        <button onclick="videoCompleted()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
+                            Mark as Watched
+                        </button>
+                    </div>
+                </div>
+            `;
+            updateProgress(12);
+        }
+
+        function videoCompleted() {
+            if (!videoWatched) {
+                videoWatched = true;
+                updateProgress(8);
+                showNotification('Video completed! Ready to explore cellular structures! 🧬', 'success');
+            }
+        }
+
+        // Cell visualization
+        function showCell(type) {
+            currentCellType = type;
+            const diagram = document.getElementById('cell-diagram');
+            
+            // Reset all organelles
+            diagram.innerHTML = '';
+            
+            if (type === 'animal') {
+                diagram.innerHTML = `
+                    <div class="organelle nucleus" data-info="Control center containing DNA and regulating cell activities">Nucleus</div>
+                    <div class="organelle mitochondria" data-info="Powerhouse producing ATP energy through cellular respiration">Mito</div>
+                    <div class="organelle ribosome" data-info="Protein synthesis factories translating mRNA into proteins">Ribo</div>
+                    <div class="organelle er" data-info="Transport network for proteins and lipid synthesis">ER</div>
+                    <div class="organelle golgi" data-info="Modifies and packages proteins from the ER">Golgi</div>
+                `;
+                diagram.style.background = 'linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(59, 130, 246, 0.1))';
+                diagram.style.borderColor = '#0ea5e9';
+            } else if (type === 'plant') {
+                diagram.innerHTML = `
+                    <div class="organelle nucleus" data-info="Control center containing DNA and regulating cell activities">Nucleus</div>
+                    <div class="organelle mitochondria" data-info="Powerhouse producing ATP energy through cellular respiration">Mito</div>
+                    <div class="organelle ribosome" data-info="Protein synthesis factories translating mRNA into proteins">Ribo</div>
+                    <div class="organelle er" data-info="Transport network for proteins and lipid synthesis">ER</div>
+                    <div class="organelle golgi" data-info="Modifies and packages proteins from the ER">Golgi</div>
+                    <div class="organelle vacuole" data-info="Large storage compartment maintaining turgor pressure">Vacuole</div>
+                    <div class="organelle" style="width: 50px; height: 50px; background: #22c55e; top: 15%; right: 15%;" data-info="Conducts photosynthesis using sunlight to produce glucose">Chloroplast</div>
+                `;
+                diagram.style.background = 'linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(34, 197, 94, 0.1))';
+                diagram.style.borderColor = '#16a34a';
+            } else if (type === 'prokaryotic') {
+                diagram.innerHTML = `
+                    <div class="organelle" style="width: 60px; height: 60px; background: #f59e0b; border: 2px dashed #fff;" data-info="Nucleoid region containing free-floating DNA">DNA</div>
+                    <div class="organelle ribosome" style="top: 25%; left: 25%;" data-info="70S ribosomes for protein synthesis">Ribo</div>
+                    <div class="organelle ribosome" style="top: 65%; right: 25%;" data-info="70S ribosomes for protein synthesis">Ribo</div>
+                `;
+                diagram.style.background = 'linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1))';
+                diagram.style.borderColor = '#f59e0b';
+                diagram.style.borderStyle = 'dashed';
+            }
+            
+            // Re-attach tooltip events
+            attachTooltipEvents();
+            updateProgress(6);
+        }
+
+        // Tooltip functionality
+        function attachTooltipEvents() {
+            const organelles = document.querySelectorAll('.organelle');
+            const tooltip = document.getElementById('tooltip');
+            
+            organelles.forEach(organelle => {
+                organelle.addEventListener('mouseenter', function(e) {
+                    const info = this.getAttribute('data-info');
+                    if (info) {
+                        tooltip.textContent = info;
+                        tooltip.style.left = e.pageX + 10 + 'px';
+                        tooltip.style.top = e.pageY - 30 + 'px';
+                        tooltip.classList.add('show');
+                    }
+                });
+                
+                organelle.addEventListener('mouseleave', function() {
+                    tooltip.classList.remove('show');
+                });
+                
+                organelle.addEventListener('mousemove', function(e) {
+                    tooltip.style.left = e.pageX + 10 + 'px';
+                    tooltip.style.top = e.pageY - 30 + 'px';
+                });
+            });
+        }
+
+        // Quiz functionality
+        function selectOption(optionElement, isCorrect) {
+            if (quizSubmitted) return;
+
+            const questionElement = optionElement.closest('.quiz-question');
+            const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(questionElement);
+            
+            // Remove previous selections in this question
+            questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            optionElement.classList.add('selected');
+            selectedAnswers[questionIndex] = { element: optionElement, correct: isCorrect };
+            
+            updateProgress(3);
+        }
+
+        function submitQuiz() {
+            if (quizSubmitted) return;
+
+            const totalQuestions = document.querySelectorAll('.quiz-question').length;
+            const answeredQuestions = Object.keys(selectedAnswers).length;
+            
+            if (answeredQuestions < totalQuestions) {
+                showNotification('Please answer all questions before submitting!', 'warning');
+                return;
+            }
+
+            quizSubmitted = true;
+            let correctCount = 0;
+
+            // Show correct/incorrect answers
+            Object.keys(selectedAnswers).forEach(questionIndex => {
+                const answer = selectedAnswers[questionIndex];
+                const questionElement = document.querySelectorAll('.quiz-question')[questionIndex];
+                
+                questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    // Show correct answers
+                    if (opt.onclick && opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+
+                if (answer.correct) {
+                    correctCount++;
+                    answer.element.classList.add('correct');
+                } else {
+                    answer.element.classList.add('incorrect');
+                }
+            });
+
+            // Show results
+            const resultDiv = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            const resultScore = document.getElementById('resultScore');
+
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            
+            resultTitle.textContent = `Quiz Complete!`;
+            resultScore.innerHTML = `<div style="font-size: 2rem; font-weight: bold; color: ${percentage >= 70 ? '#10b981' : '#ef4444'}; margin: 1rem 0;">${correctCount}/${totalQuestions} (${percentage}%)</div>`;
+            
+            if (percentage >= 90) {
+                resultMessage.textContent = 'Outstanding! You have excellent understanding of cell structure! 🌟';
+                resultTitle.style.color = '#10b981';
+            } else if (percentage >= 70) {
+                resultMessage.textContent = 'Great work! You understand cellular organization well. 👍';
+                resultTitle.style.color = '#059669';
+            } else {
+                resultMessage.textContent = 'Keep studying! Review the organelles and their functions. 📖';
+                resultTitle.style.color = '#dc2626';
+            }
+
+            resultDiv.classList.add('show');
+            updateProgress(15);
+            quizCompleted = true;
+        }
+
+        function completeLesson() {
+            if (!quizCompleted) {
+                showNotification('Please complete the quiz before finishing the lesson!', 'warning');
+                return;
+            }
+
+            updateProgress(10);
+            showNotification('🎉 Fantastic! You have completed Cell Structure!', 'success');
+            
+            // Simulate saving progress
+            setTimeout(() => {
+                alert('Lesson progress saved! You\'re ready for advanced biology topics like cellular processes and genetics.');
+            }, 1000);
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#ef4444'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+
+        // Add CSS for notification animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Intersection Observer for scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.style.animationFillMode = 'both';
+                    updateProgress(2);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize
+        updateProgress(5);
+        showCell('animal');
+        
+        // Handle direct link access
+        if (window.location.hash === '#cell-lesson' || window.location.pathname.includes('cell')) {
+            updateProgress(5);
+            showNotification('Welcome to Cell Structure! Ready to explore the building blocks of life? 🔬', 'success');
+        }
+    </script>
+</body>
+</html>
