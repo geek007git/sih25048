@@ -762,24 +762,48 @@
             <div class="lesson-content slide-in-left">
                 
                 <!-- Introduction Video -->
-                <div class="content-section">
-                    <h2 class="section-title">
-                        <i class="fas fa-play-circle"></i>
-                        Introduction Video
-                    </h2>
-                    <div class="video-container">
-                        <div class="video-placeholder" onclick="playVideo()">
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <h3>Journey Inside the Cell</h3>
-                            <p>Click to explore the microscopic world of cellular life</p>
-                        </div>
-                    </div>
-                    <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
-                        This video takes you on a journey through the cell, revealing the intricate structures that make life possible.
-                    </p>
-                </div>
+             <div class="content-section">
+  <h2 class="section-title">
+    <i class="fas fa-play-circle"></i>
+    Introduction Video
+  </h2>
+  <div class="video-container">
+    <!-- Placeholder -->
+    <div class="video-placeholder" onclick="playVideo3()">
+      <div class="play-button">
+        <i class="fas fa-play"></i>
+      </div>
+      <h3>Journey Inside the Cell</h3>
+      <p>Click to explore the microscopic world of cellular life</p>
+    </div>
+
+    <!-- YouTube iframe -->
+    <iframe
+      id="youtubeVideo3"
+      width="640"
+      height="360"
+      src="https://www.youtube.com/embed/6mgkoqcm6Sg"
+      title="Journey Inside the Cell"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      style="display:none; border-radius:12px;">
+    </iframe>
+  </div>
+  <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
+    This video takes you on a journey through the cell, revealing the intricate structures that make life possible.
+  </p>
+</div>
+
+<script>
+  function playVideo3() {
+    document.querySelector('.video-placeholder').style.display = 'none';
+    const iframe = document.getElementById('youtubeVideo3');
+    iframe.style.display = 'block';
+    iframe.src += "?autoplay=1"; // start playing automatically
+  }
+</script>
+
 
                 <!-- What is a Cell? -->
                 <div class="content-section">
