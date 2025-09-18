@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achievement Unlocked! | LearnQuiz</title>
+    <title>Atomic Structure - Chemistry Lesson | Mind forge</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -14,319 +14,1473 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
             min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
         }
 
-        .achievement-container {
-            background: white;
+        .logo i {
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #1d4ed8;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 10px 20px;
             border-radius: 20px;
-            padding: 3rem 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+        }
+
+        .lesson-header {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 3rem 0;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            max-width: 600px;
-            width: 100%;
+            margin-bottom: 2rem;
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
-            animation: slideIn 0.8s ease-out;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .achievement-container::before {
+        .lesson-header::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,215,0,0.3)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,215,0,0.4)"/><circle cx="30" cy="70" r="1" fill="rgba(255,215,0,0.5)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,215,0,0.3)"/><circle cx="50" cy="10" r="1.2" fill="rgba(255,215,0,0.4)"/></svg>');
-            animation: float 15s infinite linear;
-            opacity: 0.6;
-            z-index: 1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="4" fill="rgba(37,99,235,0.2)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/><circle cx="70" cy="70" r="3" fill="rgba(59,130,246,0.2)" stroke="rgba(37,99,235,0.3)" stroke-width="1"/><circle cx="50" cy="20" r="2" fill="rgba(37,99,235,0.3)"/><circle cx="80" cy="40" r="2.5" fill="rgba(59,130,246,0.3)"/><path d="M25 25 L35 35 M65 65 L75 75" stroke="rgba(37,99,235,0.2)" stroke-width="2"/></svg>');
+            animation: float 25s infinite linear;
+            opacity: 0.4;
         }
 
         @keyframes float {
-            0% { transform: translateX(-25px) translateY(-25px) rotate(0deg); }
-            100% { transform: translateX(-25px) translateY(-25px) rotate(360deg); }
+            0% { transform: translateX(-50px) translateY(-50px) rotate(0deg); }
+            100% { transform: translateX(-50px) translateY(-50px) rotate(360deg); }
         }
 
-        .achievement-content {
+        .lesson-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
             position: relative;
             z-index: 2;
         }
 
-        .trophy-icon {
-            font-size: 5rem;
-            color: #ffd700;
-            margin-bottom: 1rem;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-20px);
-            }
-            60% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .achievement-title {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-
-        .achievement-subtitle {
+        .lesson-header p {
             font-size: 1.2rem;
-            color: #7f8c8d;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        /* Lesson Content */
+        .lesson-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             margin-bottom: 2rem;
         }
 
-        .subjects-completed {
+        .content-section {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #2563eb;
+        }
+
+        /* Video Section */
+        .video-container {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .play-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .play-button i {
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+
+        /* Atom Visualizer */
+        .interactive-demo {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .atom-visualizer {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #1f2937;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .atom-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .nucleus {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #ef4444, #dc2626);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+            z-index: 10;
+        }
+
+        .electron-shell {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(59, 130, 246, 0.6);
+            border-radius: 50%;
+            animation: rotate 10s infinite linear;
+        }
+
+        .shell-1 { width: 80px; height: 80px; }
+        .shell-2 { width: 140px; height: 140px; animation-duration: 15s; }
+        .shell-3 { width: 200px; height: 200px; animation-duration: 20s; }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .electron {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #3b82f6;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+            animation: orbit 3s infinite linear;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+        }
+
+        .electron.shell-1 { animation-duration: 2s; }
+        .electron.shell-2 { animation-duration: 4s; }
+        .electron.shell-3 { animation-duration: 6s; }
+
+        /* Atomic Components */
+        .component-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .component-card {
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .component-card.proton {
+            background: linear-gradient(135deg, #fef2f2, #fecaca);
+            border: 1px solid #ef4444;
+        }
+
+        .component-card.neutron {
+            background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+            border: 1px solid #6b7280;
+        }
+
+        .component-card.electron {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border: 1px solid #3b82f6;
+        }
+
+        .component-card h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .component-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .proton-icon { background: #ef4444; }
+        .neutron-icon { background: #6b7280; }
+        .electron-icon { background: #3b82f6; }
+
+        /* Periodic Table Preview */
+        .periodic-preview {
+            background: #1f2937;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .element-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 1rem;
             margin: 2rem 0;
         }
 
-        .subject-badge {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border: 2px solid #dee2e6;
-            border-radius: 15px;
+        .element-card {
+            background: #374151;
+            border: 2px solid #4b5563;
+            border-radius: 10px;
             padding: 1rem;
-            transition: all 0.3s;
-        }
-
-        .subject-badge:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .subject-badge.math {
-            border-color: #7c3aed;
-            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
-        }
-
-        .subject-badge.chemistry {
-            border-color: #e74c3c;
-            background: linear-gradient(135deg, #fef2f2, #fecaca);
-        }
-
-        .subject-badge.biology {
-            border-color: #16a34a;
-            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-        }
-
-        .subject-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .subject-name {
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            margin: 2rem 0;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-radius: 15px;
-            padding: 1.5rem;
-        }
-
-        .stat-item {
             text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
         }
 
-        .stat-number {
+        .element-card:hover {
+            background: #4b5563;
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+        }
+
+        .element-symbol {
             font-size: 2rem;
             font-weight: bold;
-            color: #2c3e50;
+            color: #3b82f6;
         }
 
-        .stat-label {
+        .element-name {
             font-size: 0.9rem;
-            color: #6c757d;
+            color: #d1d5db;
             margin-top: 0.5rem;
         }
 
-        .continue-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .atomic-number {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+
+        /* Electron Configuration Builder */
+        .electron-config {
+            background: #1f2937;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .config-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .config-btn {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
             color: white;
             border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
             font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .config-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.4);
+        }
+
+        .config-btn.active {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+        }
+
+        .config-display {
+            background: #374151;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            border-left: 4px solid #3b82f6;
+        }
+
+        /* Real-world Applications */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .example-item {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .example-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .example-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #059669;
+        }
+
+        .example-title {
+            font-weight: bold;
+            color: #065f46;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-desc {
+            color: #047857;
+            font-size: 0.9rem;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-option:hover {
+            background: #f3f4f6;
+            border-color: #2563eb;
+        }
+
+        .quiz-option.selected {
+            background: #eff6ff;
+            border-color: #2563eb;
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #15803d;
+        }
+
+        .quiz-option.incorrect {
+            background: #fef2f2;
+            border-color: #dc2626;
+            color: #dc2626;
+        }
+
+        .submit-quiz, .next-lesson {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
             display: inline-flex;
             align-items: center;
             gap: 10px;
         }
 
-        .continue-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        .submit-quiz:hover, .next-lesson:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
         }
 
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ffd700;
-            animation: confetti-fall 3s infinite;
+        .quiz-result {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
         }
 
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
+        .quiz-result.show {
+            display: block;
         }
 
-        .confetti:nth-child(1) { left: 10%; animation-delay: 0s; background: #ff6b6b; }
-        .confetti:nth-child(2) { left: 20%; animation-delay: 0.5s; background: #4ecdc4; }
-        .confetti:nth-child(3) { left: 30%; animation-delay: 1s; background: #45b7d1; }
-        .confetti:nth-child(4) { left: 40%; animation-delay: 1.5s; background: #96ceb4; }
-        .confetti:nth-child(5) { left: 50%; animation-delay: 2s; background: #ffd700; }
-        .confetti:nth-child(6) { left: 60%; animation-delay: 2.5s; background: #ff9ff3; }
-        .confetti:nth-child(7) { left: 70%; animation-delay: 0.8s; background: #54a0ff; }
-        .confetti:nth-child(8) { left: 80%; animation-delay: 1.2s; background: #5f27cd; }
-        .confetti:nth-child(9) { left: 90%; animation-delay: 1.8s; background: #ff3838; }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
 
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-hydrogen { background: #3b82f6; }
+        .btn-carbon { background: #1f2937; }
+        .btn-oxygen { background: #ef4444; }
+        .btn-sodium { background: #fbbf24; }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .achievement-container {
-                padding: 2rem 1.5rem;
-            }
-            
-            .achievement-title {
+            .lesson-header h1 {
                 font-size: 2rem;
             }
-            
-            .subjects-completed {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats-container {
+
+            .lesson-meta {
                 flex-direction: column;
                 gap: 1rem;
+            }
+
+            .component-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .examples-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .atom-container {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Confetti -->
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-
-    <div class="achievement-container">
-        <div class="achievement-content">
-            <div class="trophy-icon">
-                <i class="fas fa-trophy"></i>
-            </div>
-            
-            <h1 class="achievement-title">Achievement Unlocked!</h1>
-            <p class="achievement-subtitle">STEM Explorer - Master of Multiple Disciplines</p>
-            
-            <div class="subjects-completed">
-                <div class="subject-badge math">
-                    <div class="subject-icon">∫</div>
-                    <div class="subject-name">Calculus</div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-atom"></i>
+                    Mind forge
                 </div>
-                <div class="subject-badge chemistry">
-                    <div class="subject-icon">⚗️</div>
-                    <div class="subject-name">Chemistry</div>
+                <div class="breadcrumb">
+                    <a href="#" onclick="history.back()">Dashboard</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="#" onclick="history.back()">Chemistry</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Atomic Structure</span>
                 </div>
-                <div class="subject-badge biology">
-                    <div class="subject-icon">🔬</div>
-                    <div class="subject-name">Cell Biology</div>
-                </div>
-                <div class="subject-badge biology">
-                    <div class="subject-icon">🧬</div>
-                    <div class="subject-name">Genetics</div>
-                </div>
-            </div>
-            
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Lessons Completed</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Progress</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">20+</div>
-                    <div class="stat-label">Concepts Mastered</div>
-                </div>
-            </div>
-            
-            <p style="color: #6c757d; margin: 1rem 0; font-style: italic;">
-                "The expert in anything was once a beginner who refused to give up."
-            </p>
-            
-            <button class="continue-btn" onclick="celebrateMore()">
-                <i class="fas fa-star"></i>
-                Continue Learning Journey
-            </button>
+                <a href="#" onclick="history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Courses
+                </a>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="atomic-lesson">
+        <div class="container">
+            
+            <!-- Lesson Header -->
+            <div class="lesson-header fade-in">
+                <h1>Atomic Structure</h1>
+                <p>Explore the fundamental building blocks of matter and discover what makes atoms unique</p>
+                <div class="lesson-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>55 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Intermediate</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-atom"></i>
+                        <span>Chemistry</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker fade-in">
+                <h3><i class="fas fa-chart-line"></i> Lesson Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                <p id="progressText">Ready to explore the atomic world!</p>
+            </div>
+
+            <!-- Lesson Content -->
+            <div class="lesson-content slide-in-left">
+                
+                <!-- Introduction Video -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-play-circle"></i>
+                        Introduction Video
+                    </h2>
+                    <div class="video-container">
+                        <div class="video-placeholder" onclick="playVideo()">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <h3>Journey to the Atomic World</h3>
+                            <p>Click to explore the invisible world of atoms and their components</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
+                        This video takes you on a journey inside the atom to discover protons, neutrons, and electrons.
+                    </p>
+                </div>
+
+                <!-- What is an Atom? -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question-circle"></i>
+                        What is an Atom?
+                    </h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        An <strong>atom</strong> is the smallest unit of matter that retains the properties of an element. 
+                        Every atom consists of a dense central nucleus containing protons and neutrons, surrounded by 
+                        electrons in specific energy levels or shells. Understanding atomic structure is fundamental 
+                        to chemistry and explains how elements behave and combine.
+                    </p>
+                    
+                    <div class="interactive-demo">
+                        <h3 style="margin-bottom: 1rem;">Interactive Atomic Model</h3>
+                        <div class="atom-visualizer">
+                            <div class="atom-container" id="atomContainer">
+                                <div class="nucleus" id="nucleus">6p 6n</div>
+                                <div class="electron-shell shell-1">
+                                    <div class="electron shell-1" style="top: 0; right: 0;"></div>
+                                    <div class="electron shell-1" style="bottom: 0; left: 0;"></div>
+                                </div>
+                                <div class="electron-shell shell-2">
+                                    <div class="electron shell-2" style="top: 0; right: 0;"></div>
+                                    <div class="electron shell-2" style="top: 50%; left: 0;"></div>
+                                    <div class="electron shell-2" style="bottom: 0; right: 0;"></div>
+                                    <div class="electron shell-2" style="bottom: 50%; right: 0;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <button class="btn btn-hydrogen" onclick="showAtom('hydrogen')">Hydrogen</button>
+                            <button class="btn btn-carbon" onclick="showAtom('carbon')">Carbon</button>
+                            <button class="btn btn-oxygen" onclick="showAtom('oxygen')">Oxygen</button>
+                            <button class="btn btn-sodium" onclick="showAtom('sodium')">Sodium</button>
+                        </div>
+                        <p style="color: #6b7280; margin-top: 1rem;">
+                            Switch between elements to see how atomic structure changes with different numbers of protons, neutrons, and electrons.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Atomic Components -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-puzzle-piece"></i>
+                        Atomic Components
+                    </h2>
+                    <div class="component-cards">
+                        <div class="component-card proton">
+                            <h3>
+                                <div class="component-icon proton-icon">P+</div>
+                                Protons
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                Positively charged particles located in the nucleus. The number of protons determines 
+                                the element's identity and atomic number. Protons have a mass of approximately 1 atomic mass unit (amu).
+                            </p>
+                            <div style="background: rgba(239, 68, 68, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #dc2626;">Key Facts:</strong> Positive charge (+1), Mass ≈ 1 amu, Located in nucleus
+                            </div>
+                        </div>
+                        <div class="component-card neutron">
+                            <h3>
+                                <div class="component-icon neutron-icon">N</div>
+                                Neutrons
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                Neutral particles (no charge) also located in the nucleus. Neutrons help stabilize the nucleus 
+                                and contribute to atomic mass. Different numbers of neutrons create isotopes of the same element.
+                            </p>
+                            <div style="background: rgba(107, 114, 128, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #4b5563;">Key Facts:</strong> No charge (0), Mass ≈ 1 amu, Located in nucleus
+                            </div>
+                        </div>
+                        <div class="component-card electron">
+                            <h3>
+                                <div class="component-icon electron-icon">e-</div>
+                                Electrons
+                            </h3>
+                            <p style="margin-bottom: 1rem;">
+                                Negatively charged particles that orbit the nucleus in specific energy levels or electron shells. 
+                                Electrons determine chemical bonding behavior and are much smaller than protons and neutrons.
+                            </p>
+                            <div style="background: rgba(59, 130, 246, 0.1); padding: 10px; border-radius: 8px;">
+                                <strong style="color: #2563eb;">Key Facts:</strong> Negative charge (-1), Mass ≈ 1/1836 amu, Orbit nucleus
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Electron Configuration -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-layer-group"></i>
+                        Electron Configuration
+                    </h2>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        <strong>Electron configuration</strong> describes how electrons are arranged in an atom's electron shells. 
+                        Electrons fill shells starting from the innermost (lowest energy) and follow specific rules like the 
+                        Aufbau principle and Hund's rule.
+                    </p>
+
+                    <div class="electron-config">
+                        <h3 style="margin-bottom: 1rem; color: #e5e7eb;">Electron Configuration Builder</h3>
+                        <p style="color: #d1d5db; margin-bottom: 1rem;">
+                            Click on elements to see their electron configurations:
+                        </p>
+                        <div class="config-controls">
+                            <button class="config-btn" onclick="showConfig('hydrogen')">H (1e⁻)</button>
+                            <button class="config-btn" onclick="showConfig('helium')">He (2e⁻)</button>
+                            <button class="config-btn" onclick="showConfig('carbon')">C (6e⁻)</button>
+                            <button class="config-btn" onclick="showConfig('oxygen')">O (8e⁻)</button>
+                            <button class="config-btn" onclick="showConfig('sodium')">Na (11e⁻)</button>
+                            <button class="config-btn" onclick="showConfig('chlorine')">Cl (17e⁻)</button>
+                        </div>
+                        <div class="config-display" id="configDisplay">
+                            Select an element to see its electron configuration
+                        </div>
+                        <p style="color: #d1d5db; margin-top: 1rem; font-size: 0.9rem;">
+                            Notation: 1s² means the 1s orbital contains 2 electrons
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Periodic Table Connection -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-table"></i>
+                        Atomic Structure and the Periodic Table
+                    </h2>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        The periodic table organizes elements by atomic number (number of protons). An element's position 
+                        reveals its atomic structure, electron configuration, and chemical properties. Elements in the same 
+                        group have similar outer electron arrangements.
+                    </p>
+
+                    <div class="periodic-preview">
+                        <h3 style="margin-bottom: 1rem; color: #e5e7eb;">Element Preview</h3>
+                        <div class="element-grid">
+                            <div class="element-card" onclick="showElementInfo('hydrogen')">
+                                <div class="atomic-number">1</div>
+                                <div class="element-symbol">H</div>
+                                <div class="element-name">Hydrogen</div>
+                            </div>
+                            <div class="element-card" onclick="showElementInfo('helium')">
+                                <div class="atomic-number">2</div>
+                                <div class="element-symbol">He</div>
+                                <div class="element-name">Helium</div>
+                            </div>
+                            <div class="element-card" onclick="showElementInfo('carbon')">
+                                <div class="atomic-number">6</div>
+                                <div class="element-symbol">C</div>
+                                <div class="element-name">Carbon</div>
+                            </div>
+                            <div class="element-card" onclick="showElementInfo('oxygen')">
+                                <div class="atomic-number">8</div>
+                                <div class="element-symbol">O</div>
+                                <div class="element-name">Oxygen</div>
+                            </div>
+                            <div class="element-card" onclick="showElementInfo('sodium')">
+                                <div class="atomic-number">11</div>
+                                <div class="element-symbol">Na</div>
+                                <div class="element-name">Sodium</div>
+                            </div>
+                            <div class="element-card" onclick="showElementInfo('chlorine')">
+                                <div class="atomic-number">17</div>
+                                <div class="element-symbol">Cl</div>
+                                <div class="element-name">Chlorine</div>
+                            </div>
+                        </div>
+                        <div id="elementInfo" style="background: #374151; border-radius: 10px; padding: 1rem; margin-top: 2rem; display: none;">
+                            <p id="elementText" style="color: #e5e7eb;"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Applications -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-globe-americas"></i>
+                        Real-World Applications
+                    </h2>
+                    <div class="examples-grid">
+                        <div class="example-item">
+                            <div class="example-icon">⚡</div>
+                            <div class="example-title">Nuclear Power</div>
+                            <div class="example-desc">Understanding atomic structure enables nuclear fission and fusion for clean energy production.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🏥</div>
+                            <div class="example-title">Medical Imaging</div>
+                            <div class="example-desc">Radioactive isotopes are used in medical scans and treatments based on atomic properties.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">💎</div>
+                            <div class="example-title">Materials Science</div>
+                            <div class="example-desc">Atomic structure determines material properties like hardness, conductivity, and reactivity.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🧪</div>
+                            <div class="example-title">Chemical Reactions</div>
+                            <div class="example-desc">Electron configurations predict how elements will bond and react with each other.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">💻</div>
+                            <div class="example-title">Semiconductors</div>
+                            <div class="example-desc">Computer chips rely on precisely controlling electron behavior in silicon atoms.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🔬</div>
+                            <div class="example-title">Spectroscopy</div>
+                            <div class="example-desc">Analyzing light from atoms reveals their composition, used in astronomy and forensics.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Quiz -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-question"></i>
+                        Knowledge Check
+                    </h2>
+                    <div class="quiz-section">
+                        <div class="quiz-question">
+                            <div class="question-title">1. Which particles are found in the nucleus of an atom?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Protons and electrons
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Protons and neutrons
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Neutrons and electrons
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Only protons
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">2. What determines the identity of an element?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Number of neutrons
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Number of protons (atomic number)
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Number of electrons
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Atomic mass
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">3. What is the electron configuration of carbon (6 electrons)?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> 1s² 2s⁴
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> 1s² 2s² 2p²
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> 1s⁶
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> 1s² 2p⁴
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">4. Which particle has negligible mass compared to protons and neutrons?</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>A)</span> Electron
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> Proton
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Neutron
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Nucleus
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-question">
+                            <div class="question-title">5. Isotopes of the same element have different numbers of:</div>
+                            <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Protons
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, true)">
+                                    <span>B)</span> Neutrons
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>C)</span> Electrons
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Electron shells
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="submit-quiz" onclick="submitQuiz()">Submit Quiz</button>
+                        
+                        <div class="quiz-result" id="quizResult">
+                            <h3 id="resultTitle"></h3>
+                            <p id="resultMessage"></p>
+                            <div id="resultScore"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-check-circle"></i>
+                        Lesson Summary
+                    </h2>
+                    <div style="background: #fef7cd; border-left: 4px solid #f59e0b; padding: 2rem; border-radius: 10px;">
+                        <h3 style="color: #92400e; margin-bottom: 1rem;">What you've learned:</h3>
+                        <ul style="color: #78350f; line-height: 1.8; padding-left: 1.5rem;">
+                            <li>Atoms consist of protons, neutrons, and electrons with specific properties</li>
+                            <li>Protons determine the element's identity (atomic number)</li>
+                            <li>Electrons occupy specific energy levels or shells around the nucleus</li>
+                            <li>Electron configuration follows predictable patterns and rules</li>
+                            <li>The periodic table organizes elements by atomic structure</li>
+                            <li>Isotopes have the same number of protons but different neutrons</li>
+                            <li>Understanding atomic structure has numerous real-world applications</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="next-lesson" onclick="completeLesson()">
+                            <i class="fas fa-trophy"></i>
+                            Complete Lesson
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
 
     <script>
-        function celebrateMore() {
-            // Add more celebration effects
-            const container = document.querySelector('.achievement-container');
-            container.style.animation = 'none';
-            container.style.transform = 'scale(1.05)';
+        let currentProgress = 0;
+        let quizCompleted = false;
+        let videoWatched = false;
+        let selectedAnswers = {};
+        let quizSubmitted = false;
+        let currentAtom = 'carbon';
+
+        // Atomic data
+        const atomicData = {
+            hydrogen: { protons: 1, neutrons: 0, electrons: 1, symbol: 'H', config: '1s¹' },
+            helium: { protons: 2, neutrons: 2, electrons: 2, symbol: 'He', config: '1s²' },
+            carbon: { protons: 6, neutrons: 6, electrons: 6, symbol: 'C', config: '1s² 2s² 2p²' },
+            oxygen: { protons: 8, neutrons: 8, electrons: 8, symbol: 'O', config: '1s² 2s² 2p⁴' },
+            sodium: { protons: 11, neutrons: 12, electrons: 11, symbol: 'Na', config: '1s² 2s² 2p⁶ 3s¹' },
+            chlorine: { protons: 17, neutrons: 18, electrons: 17, symbol: 'Cl', config: '1s² 2s² 2p⁶ 3s² 3p⁵' }
+        };
+
+        // Progress tracking
+        function updateProgress(increment = 7) {
+            currentProgress = Math.min(currentProgress + increment, 100);
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
             
-            setTimeout(() => {
-                container.style.transform = 'scale(1)';
-                alert('🎉 Congratulations! You\'ve mastered the fundamentals across Mathematics, Chemistry, and Biology. Ready for advanced topics!');
-            }, 200);
+            progressBar.style.width = currentProgress + '%';
+            
+            if (currentProgress <= 15) {
+                progressText.textContent = 'Beginning your atomic journey';
+            } else if (currentProgress <= 35) {
+                progressText.textContent = 'Understanding atomic components';
+            } else if (currentProgress <= 55) {
+                progressText.textContent = 'Exploring electron configurations';
+            } else if (currentProgress <= 75) {
+                progressText.textContent = 'Learning about the periodic table';
+            } else if (currentProgress < 100) {
+                progressText.textContent = 'Nearly mastered atomic structure!';
+            } else {
+                progressText.textContent = 'Atomic structure mastery achieved! ⚛️';
+                progressText.style.color = '#10b981';
+                progressText.style.fontWeight = 'bold';
+            }
         }
 
-        // Auto-play celebration sound effect (visual)
-        setTimeout(() => {
-            const trophy = document.querySelector('.trophy-icon');
-            trophy.style.color = '#ff6b6b';
-            setTimeout(() => trophy.style.color = '#4ecdc4', 300);
-            setTimeout(() => trophy.style.color = '#ffd700', 600);
-        }, 1000);
+        // Video interaction
+        function playVideo() {
+            const videoPlaceholder = document.querySelector('.video-placeholder');
+            videoPlaceholder.innerHTML = `
+                <div style="color: white; text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚛️</div>
+                    <h3>Video Playing...</h3>
+                    <p>Exploring the fascinating world inside atoms</p>
+                    <div style="margin-top: 2rem;">
+                        <button onclick="videoCompleted()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
+                            Mark as Watched
+                        </button>
+                    </div>
+                </div>
+            `;
+            updateProgress(12);
+        }
+
+        function videoCompleted() {
+            if (!videoWatched) {
+                videoWatched = true;
+                updateProgress(8);
+                showNotification('Video completed! Ready to explore atomic structure! ⚛️', 'success');
+            }
+        }
+
+        // Atom visualization
+        function showAtom(element) {
+            currentAtom = element;
+            const nucleus = document.getElementById('nucleus');
+            const container = document.getElementById('atomContainer');
+            const data = atomicData[element];
+            
+            nucleus.textContent = `${data.protons}p ${data.neutrons}n`;
+            
+            // Clear existing electrons
+            container.querySelectorAll('.electron').forEach(el => el.remove());
+            container.querySelectorAll('.electron-shell').forEach(el => el.remove());
+            
+            // Add appropriate electron shells and electrons
+            if (data.electrons >= 1) {
+                const shell1 = document.createElement('div');
+                shell1.className = 'electron-shell shell-1';
+                const electronsInShell1 = Math.min(data.electrons, 2);
+                
+                for (let i = 0; i < electronsInShell1; i++) {
+                    const electron = document.createElement('div');
+                    electron.className = 'electron shell-1';
+                    electron.style.top = i === 0 ? '0' : 'auto';
+                    electron.style.bottom = i === 1 ? '0' : 'auto';
+                    electron.style.right = '0';
+                    shell1.appendChild(electron);
+                }
+                container.appendChild(shell1);
+            }
+            
+            if (data.electrons > 2) {
+                const shell2 = document.createElement('div');
+                shell2.className = 'electron-shell shell-2';
+                const electronsInShell2 = Math.min(data.electrons - 2, 8);
+                
+                for (let i = 0; i < electronsInShell2; i++) {
+                    const electron = document.createElement('div');
+                    electron.className = 'electron shell-2';
+                    const angle = (i * 360) / electronsInShell2;
+                    electron.style.transform = `rotate(${angle}deg) translateX(70px) rotate(-${angle}deg)`;
+                    shell2.appendChild(electron);
+                }
+                container.appendChild(shell2);
+            }
+            
+            updateProgress(5);
+        }
+
+        // Electron configuration
+        function showConfig(element) {
+            const display = document.getElementById('configDisplay');
+            const data = atomicData[element];
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.config-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            display.innerHTML = `
+                <strong>${data.symbol} (${data.electrons} electrons):</strong><br>
+                ${data.config}
+            `;
+            updateProgress(4);
+        }
+
+        // Element information
+        function showElementInfo(element) {
+            const infoDiv = document.getElementById('elementInfo');
+            const textP = document.getElementById('elementText');
+            const data = atomicData[element];
+            
+            const info = {
+                hydrogen: 'The simplest atom with 1 proton and 1 electron. Most abundant element in the universe.',
+                helium: 'Noble gas with complete first electron shell. Unreactive and lighter than air.',
+                carbon: 'Forms the backbone of organic molecules. Can form 4 bonds with other atoms.',
+                oxygen: 'Essential for respiration and combustion. Forms 2 bonds typically.',
+                sodium: 'Highly reactive metal that loses its outer electron easily to form Na+ ions.',
+                chlorine: 'Reactive non-metal that gains electrons to form Cl- ions. Used in disinfectants.'
+            };
+            
+            textP.innerHTML = `
+                <strong>${data.symbol} - ${element.charAt(0).toUpperCase() + element.slice(1)}</strong><br>
+                Protons: ${data.protons} | Neutrons: ${data.neutrons} | Electrons: ${data.electrons}<br>
+                Electron Configuration: ${data.config}<br><br>
+                ${info[element]}
+            `;
+            infoDiv.style.display = 'block';
+            updateProgress(4);
+        }
+
+        // Quiz functionality
+        function selectOption(optionElement, isCorrect) {
+            if (quizSubmitted) return;
+
+            const questionElement = optionElement.closest('.quiz-question');
+            const questionIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(questionElement);
+            
+            // Remove previous selections in this question
+            questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            optionElement.classList.add('selected');
+            selectedAnswers[questionIndex] = { element: optionElement, correct: isCorrect };
+            
+            updateProgress(3);
+        }
+
+        function submitQuiz() {
+            if (quizSubmitted) return;
+
+            const totalQuestions = document.querySelectorAll('.quiz-question').length;
+            const answeredQuestions = Object.keys(selectedAnswers).length;
+            
+            if (answeredQuestions < totalQuestions) {
+                showNotification('Please answer all questions before submitting!', 'warning');
+                return;
+            }
+
+            quizSubmitted = true;
+            let correctCount = 0;
+
+            // Show correct/incorrect answers
+            Object.keys(selectedAnswers).forEach(questionIndex => {
+                const answer = selectedAnswers[questionIndex];
+                const questionElement = document.querySelectorAll('.quiz-question')[questionIndex];
+                
+                questionElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    // Show correct answers
+                    if (opt.onclick && opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+
+                if (answer.correct) {
+                    correctCount++;
+                    answer.element.classList.add('correct');
+                } else {
+                    answer.element.classList.add('incorrect');
+                }
+            });
+
+            // Show results
+            const resultDiv = document.getElementById('quizResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            const resultScore = document.getElementById('resultScore');
+
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            
+            resultTitle.textContent = `Quiz Complete!`;
+            resultScore.innerHTML = `<div style="font-size: 2rem; font-weight: bold; color: ${percentage >= 70 ? '#10b981' : '#ef4444'}; margin: 1rem 0;">${correctCount}/${totalQuestions} (${percentage}%)</div>`;
+            
+            if (percentage >= 90) {
+                resultMessage.textContent = 'Outstanding! You have mastered atomic structure concepts! ⭐';
+                resultTitle.style.color = '#10b981';
+            } else if (percentage >= 70) {
+                resultMessage.textContent = 'Great work! You understand atomic structure well. 👍';
+                resultTitle.style.color = '#059669';
+            } else {
+                resultMessage.textContent = 'Keep studying! Review atomic components and electron configurations. 📚';
+                resultTitle.style.color = '#dc2626';
+            }
+
+            resultDiv.classList.add('show');
+            updateProgress(15);
+            quizCompleted = true;
+        }
+
+        function completeLesson() {
+            if (!quizCompleted) {
+                showNotification('Please complete the quiz before finishing the lesson!', 'warning');
+                return;
+            }
+
+            updateProgress(10);
+            showNotification('🎉 Excellent! You have completed Atomic Structure!', 'success');
+            
+            // Simulate saving progress
+            setTimeout(() => {
+                alert('Lesson progress saved! You\'re ready for advanced chemistry topics like chemical bonding and molecular structure.');
+            }, 1000);
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#ef4444'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+
+        // Add CSS for notification animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Intersection Observer for scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.style.animationFillMode = 'both';
+                    updateProgress(2);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize
+        updateProgress(5);
+        showAtom('carbon');
+        
+        // Handle direct link access
+        if (window.location.hash === '#atomic-lesson' || window.location.pathname.includes('atomic')) {
+            updateProgress(5);
+            showNotification('Welcome to Atomic Structure! Ready to explore the building blocks of matter? ⚛️', 'success');
+        }
     </script>
 </body>
 </html>
