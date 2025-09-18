@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atomic Structure - Chemistry Lesson | Mind forge</title>
+    <title>Bonds and Atoms - Chemistry Lesson | Mind Forge</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -50,11 +50,11 @@
             gap: 10px;
             font-size: 1.5rem;
             font-weight: bold;
-            color: #2563eb;
+            color: #7c2d12;
         }
 
         .logo i {
-            background: linear-gradient(45deg, #2563eb, #3b82f6);
+            background: linear-gradient(45deg, #7c2d12, #ea580c);
             color: white;
             padding: 8px;
             border-radius: 8px;
@@ -69,16 +69,16 @@
         }
 
         .breadcrumb a {
-            color: #2563eb;
+            color: #7c2d12;
             text-decoration: none;
         }
 
         .breadcrumb a:hover {
-            color: #1d4ed8;
+            color: #ea580c;
         }
 
         .back-btn {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            background: linear-gradient(135deg, #7c2d12, #ea580c);
             color: white;
             border: none;
             padding: 10px 20px;
@@ -94,7 +94,7 @@
 
         .back-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 5px 15px rgba(124, 45, 18, 0.4);
         }
 
         /* Main Content */
@@ -121,7 +121,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="4" fill="rgba(37,99,235,0.2)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/><circle cx="70" cy="70" r="3" fill="rgba(59,130,246,0.2)" stroke="rgba(37,99,235,0.3)" stroke-width="1"/><circle cx="50" cy="20" r="2" fill="rgba(37,99,235,0.3)"/><circle cx="80" cy="40" r="2.5" fill="rgba(59,130,246,0.3)"/><path d="M25 25 L35 35 M65 65 L75 75" stroke="rgba(37,99,235,0.2)" stroke-width="2"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="3" fill="rgba(124,45,18,0.2)"/><circle cx="80" cy="70" r="4" fill="rgba(234,88,12,0.2)"/><path d="M20 30 L80 70" stroke="rgba(124,45,18,0.3)" stroke-width="2"/><path d="M30 20 L70 80" stroke="rgba(234,88,12,0.2)" stroke-width="1.5"/><circle cx="50" cy="50" r="2" fill="rgba(124,45,18,0.3)"/></svg>');
             animation: float 25s infinite linear;
             opacity: 0.4;
         }
@@ -184,7 +184,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            background: linear-gradient(90deg, #7c2d12, #ea580c);
             border-radius: 5px;
             transition: width 1s ease;
         }
@@ -218,7 +218,7 @@
         }
 
         .section-title i {
-            color: #2563eb;
+            color: #7c2d12;
         }
 
         /* Video Section */
@@ -266,7 +266,7 @@
             margin-left: 5px;
         }
 
-        /* Atom Visualizer */
+        /* Bonding Visualizer */
         .interactive-demo {
             background: linear-gradient(135deg, #f8fafc, #e2e8f0);
             border-radius: 15px;
@@ -275,7 +275,7 @@
             text-align: center;
         }
 
-        .atom-visualizer {
+        .bonding-visualizer {
             position: relative;
             width: 100%;
             height: 400px;
@@ -288,128 +288,152 @@
             justify-content: center;
         }
 
-        .atom-container {
+        .molecule-container {
             position: relative;
-            width: 300px;
+            width: 400px;
             height: 300px;
+            margin: 0 auto;
         }
 
-        .nucleus {
+        .bonded-atom {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, #ef4444, #dc2626);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
             z-index: 10;
         }
 
-        .electron-shell {
+        .bonded-atom:hover {
+            transform: scale(1.1);
+        }
+
+        .atom-sodium { 
+            background: radial-gradient(circle, #fbbf24, #f59e0b);
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+        }
+        .atom-chlorine { 
+            background: radial-gradient(circle, #10b981, #059669);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        }
+        .atom-hydrogen { 
+            background: radial-gradient(circle, #6b7280, #4b5563);
+            box-shadow: 0 0 20px rgba(107, 114, 128, 0.5);
+        }
+        .atom-oxygen { 
+            background: radial-gradient(circle, #ef4444, #dc2626);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+        }
+        .atom-carbon { 
+            background: radial-gradient(circle, #1f2937, #111827);
+            box-shadow: 0 0 20px rgba(31, 41, 55, 0.5);
+        }
+
+        .chemical-bond {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 2px solid rgba(59, 130, 246, 0.6);
-            border-radius: 50%;
-            animation: rotate 10s infinite linear;
+            background: linear-gradient(90deg, #7c2d12, #ea580c);
+            height: 4px;
+            border-radius: 2px;
+            z-index: 5;
+            animation: bondPulse 2s infinite alternate;
         }
 
-        .shell-1 { width: 80px; height: 80px; }
-        .shell-2 { width: 140px; height: 140px; animation-duration: 15s; }
-        .shell-3 { width: 200px; height: 200px; animation-duration: 20s; }
-
-        @keyframes rotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes bondPulse {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
         }
 
-        .electron {
+        .electron-transfer {
             position: absolute;
             width: 12px;
             height: 12px;
             background: #3b82f6;
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
-            animation: orbit 3s infinite linear;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+            animation: transferElectron 3s infinite;
+            z-index: 15;
         }
 
-        @keyframes orbit {
-            from { transform: rotate(0deg) translateX(40px) rotate(0deg); }
-            to { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+        @keyframes transferElectron {
+            0% { transform: translateX(0) translateY(0); opacity: 1; }
+            50% { transform: translateX(30px) translateY(-10px); opacity: 0.5; }
+            100% { transform: translateX(60px) translateY(0); opacity: 1; }
         }
 
-        .electron.shell-1 { animation-duration: 2s; }
-        .electron.shell-2 { animation-duration: 4s; }
-        .electron.shell-3 { animation-duration: 6s; }
-
-        /* Atomic Components */
-        .component-cards {
+        /* Bond Types */
+        .bond-types-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
 
-        .component-card {
+        .bond-type-card {
             border-radius: 15px;
             padding: 1.5rem;
             transition: all 0.3s;
             cursor: pointer;
+            border: 2px solid transparent;
         }
 
-        .component-card:hover {
+        .bond-type-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
-        .component-card.proton {
-            background: linear-gradient(135deg, #fef2f2, #fecaca);
-            border: 1px solid #ef4444;
+        .bond-type-card.active {
+            border-color: #7c2d12;
+            box-shadow: 0 10px 30px rgba(124, 45, 18, 0.2);
         }
 
-        .component-card.neutron {
-            background: linear-gradient(135deg, #f9fafb, #f3f4f6);
-            border: 1px solid #6b7280;
+        .bond-type-card.ionic {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-color: #f59e0b;
         }
 
-        .component-card.electron {
+        .bond-type-card.covalent {
             background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            border: 1px solid #3b82f6;
+            border-color: #3b82f6;
         }
 
-        .component-card h3 {
+        .bond-type-card.metallic {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-color: #6b7280;
+        }
+
+        .bond-type-card h3 {
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
 
-        .component-icon {
-            width: 40px;
-            height: 40px;
+        .bond-icon {
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        .proton-icon { background: #ef4444; }
-        .neutron-icon { background: #6b7280; }
-        .electron-icon { background: #3b82f6; }
+        .ionic-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .covalent-icon { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .metallic-icon { background: linear-gradient(135deg, #6b7280, #4b5563); }
 
-        /* Periodic Table Preview */
-        .periodic-preview {
+        /* Lewis Structures */
+        .lewis-builder {
             background: #1f2937;
             border-radius: 15px;
             padding: 2rem;
@@ -417,92 +441,71 @@
             color: white;
         }
 
-        .element-grid {
+        .lewis-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
             margin: 2rem 0;
         }
 
-        .element-card {
+        .lewis-structure {
             background: #374151;
-            border: 2px solid #4b5563;
             border-radius: 10px;
-            padding: 1rem;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.3s;
             cursor: pointer;
         }
 
-        .element-card:hover {
+        .lewis-structure:hover {
             background: #4b5563;
-            border-color: #3b82f6;
             transform: translateY(-3px);
         }
 
-        .element-symbol {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #3b82f6;
-        }
-
-        .element-name {
-            font-size: 0.9rem;
-            color: #d1d5db;
-            margin-top: 0.5rem;
-        }
-
-        .atomic-number {
-            font-size: 0.8rem;
-            color: #9ca3af;
-            position: absolute;
-            top: 5px;
-            left: 5px;
-        }
-
-        /* Electron Configuration Builder */
-        .electron-config {
+        .lewis-diagram {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            line-height: 1.4;
             background: #1f2937;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 2px solid #4b5563;
+        }
+
+        /* Molecular Geometry */
+        .geometry-showcase {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
             border-radius: 15px;
             padding: 2rem;
             margin: 2rem 0;
-            color: white;
         }
 
-        .config-controls {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+        .geometry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
         }
 
-        .config-btn {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
+        .geometry-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
         }
 
-        .config-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.4);
+        .geometry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .config-btn.active {
-            background: linear-gradient(135deg, #16a34a, #15803d);
-        }
-
-        .config-display {
-            background: #374151;
-            border-radius: 8px;
-            padding: 1rem;
-            font-family: 'Courier New', monospace;
-            font-size: 1.2rem;
-            border-left: 4px solid #3b82f6;
+        .geometry-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #0369a1;
         }
 
         /* Real-world Applications */
@@ -584,12 +587,12 @@
 
         .quiz-option:hover {
             background: #f3f4f6;
-            border-color: #2563eb;
+            border-color: #7c2d12;
         }
 
         .quiz-option.selected {
-            background: #eff6ff;
-            border-color: #2563eb;
+            background: #fef7cd;
+            border-color: #7c2d12;
         }
 
         .quiz-option.correct {
@@ -605,7 +608,7 @@
         }
 
         .submit-quiz, .next-lesson {
-            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            background: linear-gradient(135deg, #7c2d12, #ea580c);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -621,7 +624,7 @@
 
         .submit-quiz:hover, .next-lesson:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 5px 15px rgba(124, 45, 18, 0.4);
         }
 
         .quiz-result {
@@ -656,10 +659,10 @@
             color: white;
         }
 
-        .btn-hydrogen { background: #3b82f6; }
-        .btn-carbon { background: #1f2937; }
-        .btn-oxygen { background: #ef4444; }
-        .btn-sodium { background: #fbbf24; }
+        .btn-ionic { background: #f59e0b; }
+        .btn-covalent { background: #3b82f6; }
+        .btn-metallic { background: #6b7280; }
+        .btn-water { background: #0ea5e9; }
 
         .btn:hover {
             transform: translateY(-2px);
@@ -681,7 +684,7 @@
                 gap: 1rem;
             }
 
-            .component-cards {
+            .bond-types-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -694,8 +697,8 @@
                 gap: 1rem;
             }
 
-            .atom-container {
-                width: 250px;
+            .molecule-container {
+                width: 300px;
                 height: 250px;
             }
         }
@@ -734,15 +737,15 @@
         <div class="container">
             <nav class="nav">
                 <div class="logo">
-                    <i class="fas fa-atom"></i>
-                    Mind forge
+                    <i class="fas fa-link"></i>
+                    Mind Forge
                 </div>
                 <div class="breadcrumb">
                     <a href="#" onclick="history.back()">Dashboard</a>
                     <i class="fas fa-chevron-right"></i>
                     <a href="#" onclick="history.back()">Chemistry</a>
                     <i class="fas fa-chevron-right"></i>
-                    <span>Atomic Structure</span>
+                    <span>Bonds and Atoms</span>
                 </div>
                 <a href="#" onclick="history.back()" class="back-btn">
                     <i class="fas fa-arrow-left"></i>
@@ -753,24 +756,24 @@
     </header>
 
     <!-- Main Content -->
-    <main class="main-content" id="atomic-lesson">
+    <main class="main-content" id="bonds-lesson">
         <div class="container">
             
             <!-- Lesson Header -->
             <div class="lesson-header fade-in">
-                <h1>Atomic Structure</h1>
-                <p>Explore the fundamental building blocks of matter and discover what makes atoms unique</p>
+                <h1>Bonds and Atoms</h1>
+                <p>Discover how atoms connect through chemical bonds to create the molecular world around us</p>
                 <div class="lesson-meta">
                     <div class="meta-item">
                         <i class="fas fa-clock"></i>
-                        <span>55 minutes</span>
+                        <span>60 minutes</span>
                     </div>
                     <div class="meta-item">
                         <i class="fas fa-user-graduate"></i>
                         <span>Intermediate</span>
                     </div>
                     <div class="meta-item">
-                        <i class="fas fa-atom"></i>
+                        <i class="fas fa-link"></i>
                         <span>Chemistry</span>
                     </div>
                 </div>
@@ -782,7 +785,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressBar" style="width: 0%"></div>
                 </div>
-                <p id="progressText">Ready to explore the atomic world!</p>
+                <p id="progressText">Ready to explore how atoms connect!</p>
             </div>
 
             <!-- Lesson Content -->
@@ -799,188 +802,213 @@
                             <div class="play-button">
                                 <i class="fas fa-play"></i>
                             </div>
-                            <h3>Journey to the Atomic World</h3>
-                            <p>Click to explore the invisible world of atoms and their components</p>
+                            <h3>The Connection Between Atoms</h3>
+                            <p>Click to explore how atoms form bonds to create molecules</p>
                         </div>
                     </div>
                     <p style="margin-top: 1rem; color: #6b7280; font-style: italic;">
-                        This video takes you on a journey inside the atom to discover protons, neutrons, and electrons.
+                        This video shows how individual atoms join together through chemical bonds to form compounds.
                     </p>
                 </div>
 
-                <!-- What is an Atom? -->
+                <!-- What are Chemical Bonds? -->
                 <div class="content-section">
                     <h2 class="section-title">
                         <i class="fas fa-question-circle"></i>
-                        What is an Atom?
+                        What are Chemical Bonds?
                     </h2>
                     <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                        An <strong>atom</strong> is the smallest unit of matter that retains the properties of an element. 
-                        Every atom consists of a dense central nucleus containing protons and neutrons, surrounded by 
-                        electrons in specific energy levels or shells. Understanding atomic structure is fundamental 
-                        to chemistry and explains how elements behave and combine.
+                        <strong>Chemical bonds</strong> are the attractive forces that hold atoms together in molecules and compounds. 
+                        These bonds form when atoms share, transfer, or redistribute electrons to achieve more stable electron 
+                        configurations. Understanding chemical bonds explains how elements combine to form everything from 
+                        water molecules to complex proteins.
                     </p>
                     
                     <div class="interactive-demo">
-                        <h3 style="margin-bottom: 1rem;">Interactive Atomic Model</h3>
-                        <div class="atom-visualizer">
-                            <div class="atom-container" id="atomContainer">
-                                <div class="nucleus" id="nucleus">6p 6n</div>
-                                <div class="electron-shell shell-1">
-                                    <div class="electron shell-1" style="top: 0; right: 0;"></div>
-                                    <div class="electron shell-1" style="bottom: 0; left: 0;"></div>
-                                </div>
-                                <div class="electron-shell shell-2">
-                                    <div class="electron shell-2" style="top: 0; right: 0;"></div>
-                                    <div class="electron shell-2" style="top: 50%; left: 0;"></div>
-                                    <div class="electron shell-2" style="bottom: 0; right: 0;"></div>
-                                    <div class="electron shell-2" style="bottom: 50%; right: 0;"></div>
-                                </div>
+                        <h3 style="margin-bottom: 1rem;">Interactive Bonding Simulation</h3>
+                        <div class="bonding-visualizer">
+                            <div class="molecule-container" id="moleculeContainer">
+                                <!-- Default: NaCl ionic bond -->
+                                <div class="bonded-atom atom-sodium" style="top: 50%; left: 25%; transform: translate(-50%, -50%);">Na+</div>
+                                <div class="bonded-atom atom-chlorine" style="top: 50%; right: 25%; transform: translate(50%, -50%);">Cl-</div>
+                                <div class="chemical-bond" style="top: 50%; left: 37.5%; width: 25%; transform: translateY(-50%);"></div>
+                                <div class="electron-transfer" style="top: 45%; left: 30%;"></div>
                             </div>
                         </div>
                         <div class="controls">
-                            <button class="btn btn-hydrogen" onclick="showAtom('hydrogen')">Hydrogen</button>
-                            <button class="btn btn-carbon" onclick="showAtom('carbon')">Carbon</button>
-                            <button class="btn btn-oxygen" onclick="showAtom('oxygen')">Oxygen</button>
-                            <button class="btn btn-sodium" onclick="showAtom('sodium')">Sodium</button>
+                            <button class="btn btn-ionic" onclick="showBond('ionic')">Ionic: NaCl</button>
+                            <button class="btn btn-covalent" onclick="showBond('covalent')">Covalent: H₂O</button>
+                            <button class="btn btn-metallic" onclick="showBond('metallic')">Metallic: Cu</button>
+                            <button class="btn btn-water" onclick="showBond('polar')">Polar: HCl</button>
                         </div>
                         <p style="color: #6b7280; margin-top: 1rem;">
-                            Switch between elements to see how atomic structure changes with different numbers of protons, neutrons, and electrons.
+                            Switch between bond types to see how atoms connect differently in various molecules.
                         </p>
                     </div>
                 </div>
 
-                <!-- Atomic Components -->
+                <!-- Types of Chemical Bonds -->
                 <div class="content-section">
                     <h2 class="section-title">
-                        <i class="fas fa-puzzle-piece"></i>
-                        Atomic Components
+                        <i class="fas fa-sitemap"></i>
+                        Types of Chemical Bonds
                     </h2>
-                    <div class="component-cards">
-                        <div class="component-card proton">
+                    <div class="bond-types-grid">
+                        <div class="bond-type-card ionic" onclick="selectBondType('ionic')">
                             <h3>
-                                <div class="component-icon proton-icon">P+</div>
-                                Protons
+                                <div class="bond-icon ionic-icon">⇄</div>
+                                Ionic Bonds
                             </h3>
                             <p style="margin-bottom: 1rem;">
-                                Positively charged particles located in the nucleus. The number of protons determines 
-                                the element's identity and atomic number. Protons have a mass of approximately 1 atomic mass unit (amu).
+                                Form between metals and non-metals through electron transfer. One atom loses electrons 
+                                (becomes a cation) while another gains electrons (becomes an anion). The oppositely 
+                                charged ions attract each other.
                             </p>
-                            <div style="background: rgba(239, 68, 68, 0.1); padding: 10px; border-radius: 8px;">
-                                <strong style="color: #dc2626;">Key Facts:</strong> Positive charge (+1), Mass ≈ 1 amu, Located in nucleus
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 10px;">
+                                <strong style="color: #d97706;">Characteristics:</strong><br>
+                                • High melting/boiling points<br>
+                                • Conduct electricity when dissolved<br>
+                                • Often soluble in water<br>
+                                • Form crystal lattices
                             </div>
                         </div>
-                        <div class="component-card neutron">
+                        <div class="bond-type-card covalent" onclick="selectBondType('covalent')">
                             <h3>
-                                <div class="component-icon neutron-icon">N</div>
-                                Neutrons
+                                <div class="bond-icon covalent-icon">∞</div>
+                                Covalent Bonds
                             </h3>
                             <p style="margin-bottom: 1rem;">
-                                Neutral particles (no charge) also located in the nucleus. Neutrons help stabilize the nucleus 
-                                and contribute to atomic mass. Different numbers of neutrons create isotopes of the same element.
+                                Form between non-metals through electron sharing. Atoms share pairs of electrons 
+                                to achieve stable electron configurations. Can be single, double, or triple bonds 
+                                depending on shared electron pairs.
                             </p>
-                            <div style="background: rgba(107, 114, 128, 0.1); padding: 10px; border-radius: 8px;">
-                                <strong style="color: #4b5563;">Key Facts:</strong> No charge (0), Mass ≈ 1 amu, Located in nucleus
+                            <div style="background: rgba(59, 130, 246, 0.1); padding: 15px; border-radius: 10px;">
+                                <strong style="color: #2563eb;">Characteristics:</strong><br>
+                                • Lower melting/boiling points<br>
+                                • Poor electrical conductors<br>
+                                • Can be polar or nonpolar<br>
+                                • Form discrete molecules
                             </div>
                         </div>
-                        <div class="component-card electron">
+                        <div class="bond-type-card metallic" onclick="selectBondType('metallic')">
                             <h3>
-                                <div class="component-icon electron-icon">e-</div>
-                                Electrons
+                                <div class="bond-icon metallic-icon">≈</div>
+                                Metallic Bonds
                             </h3>
                             <p style="margin-bottom: 1rem;">
-                                Negatively charged particles that orbit the nucleus in specific energy levels or electron shells. 
-                                Electrons determine chemical bonding behavior and are much smaller than protons and neutrons.
+                                Form between metal atoms through a "sea of electrons." Valence electrons move freely 
+                                throughout the metal structure, creating a strong but flexible bond that explains 
+                                metallic properties.
                             </p>
-                            <div style="background: rgba(59, 130, 246, 0.1); padding: 10px; border-radius: 8px;">
-                                <strong style="color: #2563eb;">Key Facts:</strong> Negative charge (-1), Mass ≈ 1/1836 amu, Orbit nucleus
+                            <div style="background: rgba(107, 114, 128, 0.1); padding: 15px; border-radius: 10px;">
+                                <strong style="color: #4b5563;">Characteristics:</strong><br>
+                                • Excellent electrical conductivity<br>
+                                • Malleable and ductile<br>
+                                • Metallic luster<br>
+                                • Wide range of melting points
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Electron Configuration -->
+                <!-- Lewis Structures -->
                 <div class="content-section">
                     <h2 class="section-title">
-                        <i class="fas fa-layer-group"></i>
-                        Electron Configuration
-                    </h2>
-                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
-                        <strong>Electron configuration</strong> describes how electrons are arranged in an atom's electron shells. 
-                        Electrons fill shells starting from the innermost (lowest energy) and follow specific rules like the 
-                        Aufbau principle and Hund's rule.
-                    </p>
-
-                    <div class="electron-config">
-                        <h3 style="margin-bottom: 1rem; color: #e5e7eb;">Electron Configuration Builder</h3>
-                        <p style="color: #d1d5db; margin-bottom: 1rem;">
-                            Click on elements to see their electron configurations:
-                        </p>
-                        <div class="config-controls">
-                            <button class="config-btn" onclick="showConfig('hydrogen')">H (1e⁻)</button>
-                            <button class="config-btn" onclick="showConfig('helium')">He (2e⁻)</button>
-                            <button class="config-btn" onclick="showConfig('carbon')">C (6e⁻)</button>
-                            <button class="config-btn" onclick="showConfig('oxygen')">O (8e⁻)</button>
-                            <button class="config-btn" onclick="showConfig('sodium')">Na (11e⁻)</button>
-                            <button class="config-btn" onclick="showConfig('chlorine')">Cl (17e⁻)</button>
-                        </div>
-                        <div class="config-display" id="configDisplay">
-                            Select an element to see its electron configuration
-                        </div>
-                        <p style="color: #d1d5db; margin-top: 1rem; font-size: 0.9rem;">
-                            Notation: 1s² means the 1s orbital contains 2 electrons
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Periodic Table Connection -->
-                <div class="content-section">
-                    <h2 class="section-title">
-                        <i class="fas fa-table"></i>
-                        Atomic Structure and the Periodic Table
+                        <i class="fas fa-project-diagram"></i>
+                        Lewis Structures
                     </h2>
                     <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
-                        The periodic table organizes elements by atomic number (number of protons). An element's position 
-                        reveals its atomic structure, electron configuration, and chemical properties. Elements in the same 
-                        group have similar outer electron arrangements.
+                        <strong>Lewis structures</strong> are diagrams that show how electrons are arranged in molecules. 
+                        They help predict molecular geometry, bond types, and chemical properties by showing valence 
+                        electrons as dots and bonds as lines.
                     </p>
 
-                    <div class="periodic-preview">
-                        <h3 style="margin-bottom: 1rem; color: #e5e7eb;">Element Preview</h3>
-                        <div class="element-grid">
-                            <div class="element-card" onclick="showElementInfo('hydrogen')">
-                                <div class="atomic-number">1</div>
-                                <div class="element-symbol">H</div>
-                                <div class="element-name">Hydrogen</div>
+                    <div class="lewis-builder">
+                        <h3 style="margin-bottom: 1rem; color: #e5e7eb;">Common Lewis Structures</h3>
+                        <div class="lewis-grid">
+                            <div class="lewis-structure" onclick="showLewisInfo('water')">
+                                <h4 style="color: #60a5fa; margin-bottom: 1rem;">Water (H₂O)</h4>
+                                <div class="lewis-diagram">
+                                    H—O—H<br>
+                                    &nbsp;&nbsp;&nbsp;| |<br>
+                                    &nbsp;&nbsp;&nbsp;: :
+                                </div>
+                                <p style="color: #d1d5db; font-size: 0.9rem;">Bent geometry, polar molecule</p>
                             </div>
-                            <div class="element-card" onclick="showElementInfo('helium')">
-                                <div class="atomic-number">2</div>
-                                <div class="element-symbol">He</div>
-                                <div class="element-name">Helium</div>
+                            <div class="lewis-structure" onclick="showLewisInfo('methane')">
+                                <h4 style="color: #60a5fa; margin-bottom: 1rem;">Methane (CH₄)</h4>
+                                <div class="lewis-diagram">
+                                    &nbsp;&nbsp;&nbsp;H<br>
+                                    &nbsp;&nbsp;&nbsp;|<br>
+                                    H—C—H<br>
+                                    &nbsp;&nbsp;&nbsp;|<br>
+                                    &nbsp;&nbsp;&nbsp;H
+                                </div>
+                                <p style="color: #d1d5db; font-size: 0.9rem;">Tetrahedral geometry</p>
                             </div>
-                            <div class="element-card" onclick="showElementInfo('carbon')">
-                                <div class="atomic-number">6</div>
-                                <div class="element-symbol">C</div>
-                                <div class="element-name">Carbon</div>
+                            <div class="lewis-structure" onclick="showLewisInfo('ammonia')">
+                                <h4 style="color: #60a5fa; margin-bottom: 1rem;">Ammonia (NH₃)</h4>
+                                <div class="lewis-diagram">
+                                    &nbsp;&nbsp;:&nbsp;<br>
+                                    &nbsp;&nbsp;|&nbsp;<br>
+                                    H—N—H<br>
+                                    &nbsp;&nbsp;&nbsp;|<br>
+                                    &nbsp;&nbsp;&nbsp;H
+                                </div>
+                                <p style="color: #d1d5db; font-size: 0.9rem;">Trigonal pyramidal</p>
                             </div>
-                            <div class="element-card" onclick="showElementInfo('oxygen')">
-                                <div class="atomic-number">8</div>
-                                <div class="element-symbol">O</div>
-                                <div class="element-name">Oxygen</div>
-                            </div>
-                            <div class="element-card" onclick="showElementInfo('sodium')">
-                                <div class="atomic-number">11</div>
-                                <div class="element-symbol">Na</div>
-                                <div class="element-name">Sodium</div>
-                            </div>
-                            <div class="element-card" onclick="showElementInfo('chlorine')">
-                                <div class="atomic-number">17</div>
-                                <div class="element-symbol">Cl</div>
-                                <div class="element-name">Chlorine</div>
+                            <div class="lewis-structure" onclick="showLewisInfo('carbon_dioxide')">
+                                <h4 style="color: #60a5fa; margin-bottom: 1rem;">Carbon Dioxide (CO₂)</h4>
+                                <div class="lewis-diagram">
+                                    O=C=O
+                                </div>
+                                <p style="color: #d1d5db; font-size: 0.9rem;">Linear geometry</p>
                             </div>
                         </div>
-                        <div id="elementInfo" style="background: #374151; border-radius: 10px; padding: 1rem; margin-top: 2rem; display: none;">
-                            <p id="elementText" style="color: #e5e7eb;"></p>
+                        <div id="lewisInfo" style="background: #374151; border-radius: 10px; padding: 1rem; margin-top: 2rem; display: none;">
+                            <p id="lewisText" style="color: #e5e7eb;"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Molecular Geometry -->
+                <div class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-shapes"></i>
+                        Molecular Geometry
+                    </h2>
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                        The three-dimensional shape of molecules affects their properties and behavior. Molecular geometry 
+                        is determined by electron pair repulsion - electrons arrange themselves to minimize repulsion.
+                    </p>
+
+                    <div class="geometry-showcase">
+                        <h3 style="margin-bottom: 1rem; color: #0369a1;">Common Molecular Shapes</h3>
+                        <div class="geometry-grid">
+                            <div class="geometry-card">
+                                <div class="geometry-icon">●</div>
+                                <h4 style="color: #0369a1;">Linear</h4>
+                                <p style="color: #075985;">CO₂, HCl</p>
+                                <p style="font-size: 0.9rem; color: #0c4a6e;">180° bond angle</p>
+                            </div>
+                            <div class="geometry-card">
+                                <div class="geometry-icon">△</div>
+                                <h4 style="color: #0369a1;">Trigonal Planar</h4>
+                                <p style="color: #075985;">BF₃, SO₃</p>
+                                <p style="font-size: 0.9rem; color: #0c4a6e;">120° bond angles</p>
+                            </div>
+                            <div class="geometry-card">
+                                <div class="geometry-icon">⬢</div>
+                                <h4 style="color: #0369a1;">Tetrahedral</h4>
+                                <p style="color: #075985;">CH₄, NH₄⁺</p>
+                                <p style="font-size: 0.9rem; color: #0c4a6e;">109.5° bond angles</p>
+                            </div>
+                            <div class="geometry-card">
+                                <div class="geometry-icon">∧</div>
+                                <h4 style="color: #0369a1;">Bent</h4>
+                                <p style="color: #075985;">H₂O, SO₂</p>
+                                <p style="font-size: 0.9rem; color: #0c4a6e;">104.5° in water</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -993,34 +1021,34 @@
                     </h2>
                     <div class="examples-grid">
                         <div class="example-item">
-                            <div class="example-icon">⚡</div>
-                            <div class="example-title">Nuclear Power</div>
-                            <div class="example-desc">Understanding atomic structure enables nuclear fission and fusion for clean energy production.</div>
+                            <div class="example-icon">💊</div>
+                            <div class="example-title">Drug Design</div>
+                            <div class="example-desc">Understanding molecular shapes helps design drugs that fit specific receptor sites in the body.</div>
                         </div>
                         <div class="example-item">
-                            <div class="example-icon">🏥</div>
-                            <div class="example-title">Medical Imaging</div>
-                            <div class="example-desc">Radioactive isotopes are used in medical scans and treatments based on atomic properties.</div>
-                        </div>
-                        <div class="example-item">
-                            <div class="example-icon">💎</div>
-                            <div class="example-title">Materials Science</div>
-                            <div class="example-desc">Atomic structure determines material properties like hardness, conductivity, and reactivity.</div>
-                        </div>
-                        <div class="example-item">
-                            <div class="example-icon">🧪</div>
-                            <div class="example-title">Chemical Reactions</div>
-                            <div class="example-desc">Electron configurations predict how elements will bond and react with each other.</div>
-                        </div>
-                        <div class="example-item">
-                            <div class="example-icon">💻</div>
-                            <div class="example-title">Semiconductors</div>
-                            <div class="example-desc">Computer chips rely on precisely controlling electron behavior in silicon atoms.</div>
+                            <div class="example-icon">🏗️</div>
+                            <div class="example-title">Materials Engineering</div>
+                            <div class="example-desc">Different bond types create materials with specific properties like strength, flexibility, or conductivity.</div>
                         </div>
                         <div class="example-item">
                             <div class="example-icon">🔬</div>
-                            <div class="example-title">Spectroscopy</div>
-                            <div class="example-desc">Analyzing light from atoms reveals their composition, used in astronomy and forensics.</div>
+                            <div class="example-title">Biochemistry</div>
+                            <div class="example-desc">Protein folding and enzyme function depend on specific molecular geometries and bond interactions.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">⚡</div>
+                            <div class="example-title">Electronics</div>
+                            <div class="example-desc">Metallic bonds enable electrical conductivity in wires and electronic components.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🧪</div>
+                            <div class="example-title">Chemical Synthesis</div>
+                            <div class="example-desc">Predicting bond formation helps chemists design new compounds and optimize reactions.</div>
+                        </div>
+                        <div class="example-item">
+                            <div class="example-icon">🌊</div>
+                            <div class="example-title">Water Properties</div>
+                            <div class="example-desc">Water's unique properties like high boiling point and polarity result from hydrogen bonding.</div>
                         </div>
                     </div>
                 </div>
@@ -1033,91 +1061,91 @@
                     </h2>
                     <div class="quiz-section">
                         <div class="quiz-question">
-                            <div class="question-title">1. Which particles are found in the nucleus of an atom?</div>
+                            <div class="question-title">1. What type of bond forms between sodium (Na) and chlorine (Cl)?</div>
                             <div class="quiz-options">
-                                <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>A)</span> Protons and electrons
-                                </div>
                                 <div class="quiz-option" onclick="selectOption(this, true)">
-                                    <span>B)</span> Protons and neutrons
+                                    <span>A)</span> Ionic bond
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>C)</span> Neutrons and electrons
+                                    <span>B)</span> Covalent bond
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>D)</span> Only protons
+                                    <span>C)</span> Metallic bond
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>D)</span> Hydrogen bond
                                 </div>
                             </div>
                         </div>
 
                         <div class="quiz-question">
-                            <div class="question-title">2. What determines the identity of an element?</div>
+                            <div class="question-title">2. In a water molecule (H₂O), electrons are:</div>
                             <div class="quiz-options">
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>A)</span> Number of neutrons
+                                    <span>A)</span> Transferred from hydrogen to oxygen
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, true)">
-                                    <span>B)</span> Number of protons (atomic number)
+                                    <span>B)</span> Shared between hydrogen and oxygen atoms
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>C)</span> Number of electrons
+                                    <span>C)</span> Moving freely throughout the molecule
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>D)</span> Atomic mass
+                                    <span>D)</span> Only around the oxygen atom
                                 </div>
                             </div>
                         </div>
 
                         <div class="quiz-question">
-                            <div class="question-title">3. What is the electron configuration of carbon (6 electrons)?</div>
+                            <div class="question-title">3. What is the molecular geometry of methane (CH₄)?</div>
                             <div class="quiz-options">
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>A)</span> 1s² 2s⁴
+                                    <span>A)</span> Linear
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> Bent
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, true)">
-                                    <span>B)</span> 1s² 2s² 2p²
+                                    <span>C)</span> Tetrahedral
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>C)</span> 1s⁶
-                                </div>
-                                <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>D)</span> 1s² 2p⁴
+                                    <span>D)</span> Trigonal planar
                                 </div>
                             </div>
                         </div>
 
                         <div class="quiz-question">
-                            <div class="question-title">4. Which particle has negligible mass compared to protons and neutrons?</div>
+                            <div class="question-title">4. Which bond type explains why metals conduct electricity?</div>
                             <div class="quiz-options">
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>A)</span> Ionic bonds
+                                </div>
+                                <div class="quiz-option" onclick="selectOption(this, false)">
+                                    <span>B)</span> Covalent bonds
+                                </div>
                                 <div class="quiz-option" onclick="selectOption(this, true)">
-                                    <span>A)</span> Electron
+                                    <span>C)</span> Metallic bonds
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>B)</span> Proton
-                                </div>
-                                <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>C)</span> Neutron
-                                </div>
-                                <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>D)</span> Nucleus
+                                    <span>D)</span> Hydrogen bonds
                                 </div>
                             </div>
                         </div>
 
                         <div class="quiz-question">
-                            <div class="question-title">5. Isotopes of the same element have different numbers of:</div>
+                            <div class="question-title">5. Lewis structures show:</div>
                             <div class="quiz-options">
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>A)</span> Protons
+                                    <span>A)</span> Only the nucleus of atoms
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, true)">
-                                    <span>B)</span> Neutrons
+                                    <span>B)</span> Valence electrons and bonding patterns
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>C)</span> Electrons
+                                    <span>C)</span> The mass of molecules
                                 </div>
                                 <div class="quiz-option" onclick="selectOption(this, false)">
-                                    <span>D)</span> Electron shells
+                                    <span>D)</span> Nuclear composition
                                 </div>
                             </div>
                         </div>
@@ -1141,13 +1169,13 @@
                     <div style="background: #fef7cd; border-left: 4px solid #f59e0b; padding: 2rem; border-radius: 10px;">
                         <h3 style="color: #92400e; margin-bottom: 1rem;">What you've learned:</h3>
                         <ul style="color: #78350f; line-height: 1.8; padding-left: 1.5rem;">
-                            <li>Atoms consist of protons, neutrons, and electrons with specific properties</li>
-                            <li>Protons determine the element's identity (atomic number)</li>
-                            <li>Electrons occupy specific energy levels or shells around the nucleus</li>
-                            <li>Electron configuration follows predictable patterns and rules</li>
-                            <li>The periodic table organizes elements by atomic structure</li>
-                            <li>Isotopes have the same number of protons but different neutrons</li>
-                            <li>Understanding atomic structure has numerous real-world applications</li>
+                            <li>Chemical bonds hold atoms together through electron interactions</li>
+                            <li>Ionic bonds form through electron transfer between metals and non-metals</li>
+                            <li>Covalent bonds form through electron sharing between non-metals</li>
+                            <li>Metallic bonds create a "sea of electrons" in metals</li>
+                            <li>Lewis structures visualize electron arrangements in molecules</li>
+                            <li>Molecular geometry affects chemical and physical properties</li>
+                            <li>Understanding bonds is crucial for drug design and materials science</li>
                         </ul>
                     </div>
                     
@@ -1169,17 +1197,7 @@
         let videoWatched = false;
         let selectedAnswers = {};
         let quizSubmitted = false;
-        let currentAtom = 'carbon';
-
-        // Atomic data
-        const atomicData = {
-            hydrogen: { protons: 1, neutrons: 0, electrons: 1, symbol: 'H', config: '1s¹' },
-            helium: { protons: 2, neutrons: 2, electrons: 2, symbol: 'He', config: '1s²' },
-            carbon: { protons: 6, neutrons: 6, electrons: 6, symbol: 'C', config: '1s² 2s² 2p²' },
-            oxygen: { protons: 8, neutrons: 8, electrons: 8, symbol: 'O', config: '1s² 2s² 2p⁴' },
-            sodium: { protons: 11, neutrons: 12, electrons: 11, symbol: 'Na', config: '1s² 2s² 2p⁶ 3s¹' },
-            chlorine: { protons: 17, neutrons: 18, electrons: 17, symbol: 'Cl', config: '1s² 2s² 2p⁶ 3s² 3p⁵' }
-        };
+        let currentBondType = 'ionic';
 
         // Progress tracking
         function updateProgress(increment = 7) {
@@ -1190,17 +1208,17 @@
             progressBar.style.width = currentProgress + '%';
             
             if (currentProgress <= 15) {
-                progressText.textContent = 'Beginning your atomic journey';
+                progressText.textContent = 'Beginning your bonding journey';
             } else if (currentProgress <= 35) {
-                progressText.textContent = 'Understanding atomic components';
+                progressText.textContent = 'Understanding different bond types';
             } else if (currentProgress <= 55) {
-                progressText.textContent = 'Exploring electron configurations';
+                progressText.textContent = 'Exploring molecular structures';
             } else if (currentProgress <= 75) {
-                progressText.textContent = 'Learning about the periodic table';
+                progressText.textContent = 'Learning about molecular geometry';
             } else if (currentProgress < 100) {
-                progressText.textContent = 'Nearly mastered atomic structure!';
+                progressText.textContent = 'Nearly mastered chemical bonding!';
             } else {
-                progressText.textContent = 'Atomic structure mastery achieved! ⚛️';
+                progressText.textContent = 'Chemical bonding mastery achieved! 🔗';
                 progressText.style.color = '#10b981';
                 progressText.style.fontWeight = 'bold';
             }
@@ -1211,9 +1229,9 @@
             const videoPlaceholder = document.querySelector('.video-placeholder');
             videoPlaceholder.innerHTML = `
                 <div style="color: white; text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚛️</div>
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔗</div>
                     <h3>Video Playing...</h3>
-                    <p>Exploring the fascinating world inside atoms</p>
+                    <p>Exploring how atoms form chemical bonds</p>
                     <div style="margin-top: 2rem;">
                         <button onclick="videoCompleted()" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
                             Mark as Watched
@@ -1228,95 +1246,74 @@
             if (!videoWatched) {
                 videoWatched = true;
                 updateProgress(8);
-                showNotification('Video completed! Ready to explore atomic structure! ⚛️', 'success');
+                showNotification('Video completed! Ready to explore chemical bonds! 🔗', 'success');
             }
         }
 
-        // Atom visualization
-        function showAtom(element) {
-            currentAtom = element;
-            const nucleus = document.getElementById('nucleus');
-            const container = document.getElementById('atomContainer');
-            const data = atomicData[element];
+        // Bond visualization
+        function showBond(type) {
+            currentBondType = type;
+            const container = document.getElementById('moleculeContainer');
             
-            nucleus.textContent = `${data.protons}p ${data.neutrons}n`;
+            container.innerHTML = '';
             
-            // Clear existing electrons
-            container.querySelectorAll('.electron').forEach(el => el.remove());
-            container.querySelectorAll('.electron-shell').forEach(el => el.remove());
-            
-            // Add appropriate electron shells and electrons
-            if (data.electrons >= 1) {
-                const shell1 = document.createElement('div');
-                shell1.className = 'electron-shell shell-1';
-                const electronsInShell1 = Math.min(data.electrons, 2);
-                
-                for (let i = 0; i < electronsInShell1; i++) {
-                    const electron = document.createElement('div');
-                    electron.className = 'electron shell-1';
-                    electron.style.top = i === 0 ? '0' : 'auto';
-                    electron.style.bottom = i === 1 ? '0' : 'auto';
-                    electron.style.right = '0';
-                    shell1.appendChild(electron);
-                }
-                container.appendChild(shell1);
-            }
-            
-            if (data.electrons > 2) {
-                const shell2 = document.createElement('div');
-                shell2.className = 'electron-shell shell-2';
-                const electronsInShell2 = Math.min(data.electrons - 2, 8);
-                
-                for (let i = 0; i < electronsInShell2; i++) {
-                    const electron = document.createElement('div');
-                    electron.className = 'electron shell-2';
-                    const angle = (i * 360) / electronsInShell2;
-                    electron.style.transform = `rotate(${angle}deg) translateX(70px) rotate(-${angle}deg)`;
-                    shell2.appendChild(electron);
-                }
-                container.appendChild(shell2);
+            if (type === 'ionic') {
+                container.innerHTML = `
+                    <div class="bonded-atom atom-sodium" style="top: 50%; left: 25%; transform: translate(-50%, -50%);">Na+</div>
+                    <div class="bonded-atom atom-chlorine" style="top: 50%; right: 25%; transform: translate(50%, -50%);">Cl-</div>
+                    <div class="chemical-bond" style="top: 50%; left: 37.5%; width: 25%; transform: translateY(-50%);"></div>
+                    <div class="electron-transfer" style="top: 45%; left: 30%;"></div>
+                `;
+            } else if (type === 'covalent') {
+                container.innerHTML = `
+                    <div class="bonded-atom atom-hydrogen" style="top: 30%; left: 15%; transform: translate(-50%, -50%);">H</div>
+                    <div class="bonded-atom atom-oxygen" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">O</div>
+                    <div class="bonded-atom atom-hydrogen" style="top: 70%; left: 15%; transform: translate(-50%, -50%);">H</div>
+                    <div class="chemical-bond" style="top: 40%; left: 25%; width: 20%; transform: translateY(-50%) rotate(45deg);"></div>
+                    <div class="chemical-bond" style="top: 60%; left: 25%; width: 20%; transform: translateY(-50%) rotate(-45deg);"></div>
+                `;
+            } else if (type === 'metallic') {
+                container.innerHTML = `
+                    <div class="bonded-atom" style="top: 30%; left: 20%; transform: translate(-50%, -50%); background: radial-gradient(circle, #f59e0b, #d97706);">Cu</div>
+                    <div class="bonded-atom" style="top: 30%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, #f59e0b, #d97706);">Cu</div>
+                    <div class="bonded-atom" style="top: 30%; left: 80%; transform: translate(-50%, -50%); background: radial-gradient(circle, #f59e0b, #d97706);">Cu</div>
+                    <div class="bonded-atom" style="top: 70%; left: 20%; transform: translate(-50%, -50%); background: radial-gradient(circle, #f59e0b, #d97706);">Cu</div>
+                    <div class="bonded-atom" style="top: 70%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, #f59e0b, #d97706);">Cu</div>
+                    <div class="bonded-atom" style="top: 70%; left: 80%; transform: translate(-50%, -50%); background: radial-gradient(circle, #f59e0b, #d97706);">Cu</div>
+                `;
+            } else if (type === 'polar') {
+                container.innerHTML = `
+                    <div class="bonded-atom atom-hydrogen" style="top: 50%; left: 25%; transform: translate(-50%, -50%);">H</div>
+                    <div class="bonded-atom atom-chlorine" style="top: 50%; right: 25%; transform: translate(50%, -50%);">Cl</div>
+                    <div class="chemical-bond" style="top: 50%; left: 37.5%; width: 25%; transform: translateY(-50%);"></div>
+                    <div style="position: absolute; top: 40%; left: 20%; color: #3b82f6; font-weight: bold;">δ+</div>
+                    <div style="position: absolute; top: 40%; right: 20%; color: #ef4444; font-weight: bold;">δ-</div>
+                `;
             }
             
             updateProgress(5);
         }
 
-        // Electron configuration
-        function showConfig(element) {
-            const display = document.getElementById('configDisplay');
-            const data = atomicData[element];
-            
-            // Remove active class from all buttons
-            document.querySelectorAll('.config-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            display.innerHTML = `
-                <strong>${data.symbol} (${data.electrons} electrons):</strong><br>
-                ${data.config}
-            `;
+        // Bond type selection
+        function selectBondType(type) {
+            document.querySelectorAll('.bond-type-card').forEach(card => card.classList.remove('active'));
+            document.querySelector(`.bond-type-card.${type}`).classList.add('active');
             updateProgress(4);
         }
 
-        // Element information
-        function showElementInfo(element) {
-            const infoDiv = document.getElementById('elementInfo');
-            const textP = document.getElementById('elementText');
-            const data = atomicData[element];
+        // Lewis structure information
+        function showLewisInfo(molecule) {
+            const infoDiv = document.getElementById('lewisInfo');
+            const textP = document.getElementById('lewisText');
             
             const info = {
-                hydrogen: 'The simplest atom with 1 proton and 1 electron. Most abundant element in the universe.',
-                helium: 'Noble gas with complete first electron shell. Unreactive and lighter than air.',
-                carbon: 'Forms the backbone of organic molecules. Can form 4 bonds with other atoms.',
-                oxygen: 'Essential for respiration and combustion. Forms 2 bonds typically.',
-                sodium: 'Highly reactive metal that loses its outer electron easily to form Na+ ions.',
-                chlorine: 'Reactive non-metal that gains electrons to form Cl- ions. Used in disinfectants.'
+                water: 'Water (H₂O) has a bent molecular geometry due to two lone pairs on oxygen. The O-H bonds are polar, making water a polar molecule with unique properties.',
+                methane: 'Methane (CH₄) has a tetrahedral geometry with all bond angles at 109.5°. The C-H bonds are nearly nonpolar, making methane a nonpolar molecule.',
+                ammonia: 'Ammonia (NH₃) has a trigonal pyramidal shape due to one lone pair on nitrogen. This geometry makes ammonia a polar molecule and a good base.',
+                carbon_dioxide: 'Carbon dioxide (CO₂) is linear with double bonds between carbon and each oxygen. Despite polar C=O bonds, CO₂ is nonpolar due to symmetry.'
             };
             
-            textP.innerHTML = `
-                <strong>${data.symbol} - ${element.charAt(0).toUpperCase() + element.slice(1)}</strong><br>
-                Protons: ${data.protons} | Neutrons: ${data.neutrons} | Electrons: ${data.electrons}<br>
-                Electron Configuration: ${data.config}<br><br>
-                ${info[element]}
-            `;
+            textP.textContent = info[molecule];
             infoDiv.style.display = 'block';
             updateProgress(4);
         }
@@ -1387,13 +1384,13 @@
             resultScore.innerHTML = `<div style="font-size: 2rem; font-weight: bold; color: ${percentage >= 70 ? '#10b981' : '#ef4444'}; margin: 1rem 0;">${correctCount}/${totalQuestions} (${percentage}%)</div>`;
             
             if (percentage >= 90) {
-                resultMessage.textContent = 'Outstanding! You have mastered atomic structure concepts! ⭐';
+                resultMessage.textContent = 'Outstanding! You have mastered chemical bonding concepts!';
                 resultTitle.style.color = '#10b981';
             } else if (percentage >= 70) {
-                resultMessage.textContent = 'Great work! You understand atomic structure well. 👍';
+                resultMessage.textContent = 'Great work! You understand how atoms form bonds well.';
                 resultTitle.style.color = '#059669';
             } else {
-                resultMessage.textContent = 'Keep studying! Review atomic components and electron configurations. 📚';
+                resultMessage.textContent = 'Keep studying! Review bond types and molecular structures.';
                 resultTitle.style.color = '#dc2626';
             }
 
@@ -1409,11 +1406,11 @@
             }
 
             updateProgress(10);
-            showNotification('🎉 Excellent! You have completed Atomic Structure!', 'success');
+            showNotification('Excellent! You have completed Bonds and Atoms!', 'success');
             
             // Simulate saving progress
             setTimeout(() => {
-                alert('Lesson progress saved! You\'re ready for advanced chemistry topics like chemical bonding and molecular structure.');
+                alert('Lesson progress saved! You\'re ready for advanced chemistry topics like molecular interactions and reaction mechanisms.');
             }, 1000);
         }
 
@@ -1474,12 +1471,12 @@
 
         // Initialize
         updateProgress(5);
-        showAtom('carbon');
+        showBond('ionic');
         
         // Handle direct link access
-        if (window.location.hash === '#atomic-lesson' || window.location.pathname.includes('atomic')) {
+        if (window.location.hash === '#bonds-lesson' || window.location.pathname.includes('bonds')) {
             updateProgress(5);
-            showNotification('Welcome to Atomic Structure! Ready to explore the building blocks of matter? ⚛️', 'success');
+            showNotification('Welcome to Bonds and Atoms! Ready to explore chemical connections?', 'success');
         }
     </script>
 </body>
